@@ -1,0 +1,462 @@
+<!--START: FIRST-NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-light  first-header fixed-top" >
+  <div class="container">
+    <div class="navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav navbar-socialmedia mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="https://www.facebook.com/"><i class="fa fa-facebook fa-seted"
+              aria-hidden="true"></i>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://www.twitter.com/"><i class="fa fa-twitter fa-seted"
+              aria-hidden="true"></i></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://www.instagram.com/"><i class="fa fa-instagram fa-seted"
+              aria-hidden="true"></i></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://www.youtube.com/"><i class="fa fa-youtube fa-seted"
+              aria-hidden="true"></i></a>
+        </li>
+      </ul>
+      <ul class="navbar-nav navbar-help mr-right">
+        <li class="nav-item  mr-3">
+          <a class="nav-link"><i class="fa fa-question-circle fa-set" aria-hidden="true"></i> Help </a>
+        </li>
+        <li class="nav-item">
+          <div id="app-get">
+            <a class="nav-link link-right" id="dropdownBasic1" (click)="modalAd(Adscontent)">
+              <i class="fa fa-handshake-o" aria-hidden="true"></i>
+              Post Ads</a>
+          </div>
+          <!-- START:POST ADS/BANNERS -->
+          <ng-template #Adscontent let-modal>
+            <div class="modal-header add-header p-3">
+
+              <h5 class="modal-title" id="modal-basic-title">Post Ads and Banner</h5>
+              <button type="button" class="close set-close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body p-3">
+              <div class="">
+                <button type="button" class="btn btn-primary btn-block" (click)="isCollapsed = !isCollapsed"
+                  [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample">Post Banners</button>
+                <!--  -->
+                <div id="collapseExample" [ngbCollapse]="isCollapsed" class="mt-4">
+                  <div class="banner-card">
+                    <div class="row">
+                      <div class="col-sm-6">
+                        <button type="button" class="btn btn-outline-primary btn-block"
+                          (click)="modalBanner(Bannercontent)"> <i class="fa fa-plus" aria-hidden="true"></i> Main
+                          Banner </button>
+                        <ng-template #Bannercontent let-modal>
+                          <div class="modal-content">
+                            <img src="assets/img/Logo_png3.png" class="main-logo">
+                            <div class="modal-header p-2">
+                              <h4>Main Banner</h4>
+                              <button type="button" class="close m-0 p-0" aria-label="Close"
+                                (click)="modal.dismiss('Cross click')">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
+                            </div>
+                            <div class="modal-body p-0">
+                              <form>
+                                <div class="form-row md-ct">
+                                  <div class="form-group col-md-6">
+                                    <select id="inputState" class="form-control">
+                                      <option value="1" selected="selected">Leaderboard (728px x 90px)</option>
+                                      <option value="2">Large Mobile Banner (320px x 100px)</option>
+                                      <option value="3">Square (250px x 250px)</option>
+                                      <option value="4">Wide Skyscraper (160px x 600px)</option>
+                                      <option value="50">Sponsored Links (320px x 100px)</option>
+                                    </select>
+                                  </div>
+                                  <div class="form-group custom-file col-md-6">
+                                    <input type="file" class="custom-file-input" id="customFile">
+                                    <label class="custom-file-label" for="customFile">Choose file</label>
+                                  </div>
+                                </div>
+                                <h4 class="text-center md-banner">Basic Information</h4>
+                                <div class="form-row md-ct">
+                                  <div class="form-group col-md-4">
+                                    <label for="inputState" class="lb-ctm">Account</label>
+                                    <select id="inputState" class="form-control">
+                                      <option selected>No Owner</option>
+                                      <option>User-1</option>
+                                      <option>User-2</option>
+                                      <option>User-3</option>
+                                    </select>
+                                  </div>
+                                  <div class="form-group col-md-4">
+                                    <label for="inputState" class="lb-ctm">Status</label>
+                                    <select id="inputState" class="form-control">
+                                      <option selected>Active</option>
+                                      <option>Suspend</option>
+                                      <option>Pending</option>
+                                    </select>
+                                  </div>
+                                  <div class="form-group col-md-4">
+                                    <label for="inputState" class="lb-ctm">Renewal Date</label>
+                                    <input type="date" class="form-control" id="date">
+                                  </div>
+                                </div>
+                                <h4 class="text-center md-banner">Banner Details</h4>
+                                <div class="form-row md-ct">
+                                  <div class="custom-control custom-radio custom-control-inline ">
+                                    <input type="radio" id="customRadioInline1" name="customRadioInline1"
+                                      class="custom-control-input">
+                                    <label class="custom-control-label" for="customRadioInline1">General Page</label>
+                                  </div>
+                                  <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" id="customRadioInline2" name="customRadioInline1"
+                                      class="custom-control-input">
+                                    <label class="custom-control-label" for="customRadioInline2">Listing</label>
+                                  </div>
+                                  <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" id="customRadioInline3" name="customRadioInline1"
+                                      class="custom-control-input">
+                                    <label class="custom-control-label" for="customRadioInline3">Deal</label>
+                                  </div>
+                                  <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" id="customRadioInline4" name="customRadioInline1"
+                                      class="custom-control-input">
+                                    <label class="custom-control-label" for="customRadioInline4">Event</label>
+                                  </div>
+                                  <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" id="customRadioInline5" name="customRadioInline1"
+                                      class="custom-control-input">
+                                    <label class="custom-control-label" for="customRadioInline5">Classified</label>
+                                  </div>
+                                  <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" id="customRadioInline6" name="customRadioInline1"
+                                      class="custom-control-input">
+                                    <label class="custom-control-label" for="customRadioInline6">Article</label>
+                                  </div>
+                                </div>
+                                <div class="form-row md-ct">
+                                  <div class="form-group col-md-6">
+                                    <label for="inputState" class="lb-ctm">Category</label>
+                                    <select id="inputState" class="form-control">
+                                      <option selected>Pages</option>
+                                      <option>page-1</option>
+                                      <option>page-2</option>
+                                      <option>page-3</option>
+                                    </select>
+                                  </div>
+                                  <div class="form-group col-md-6">
+                                    <label for="inputState" class="lb-ctm">Promocode</label>
+                                    <input class="form-control" type="text" placeholder="Enter Promocode">
+                                  </div>
+                                </div>
+                                <div class="text-center mb-4">
+                                  <button type="submit" class="btn btn-secondary mr-3">Cancel</button>
+                                  <button type="submit" class="btn btn-primary">Save</button>
+                                </div>
+                              </form>
+                            </div>
+                          </div>
+                        </ng-template>
+                      </div>
+                      <div class="col-sm-6">
+                        <button type="button" class="btn btn-outline-primary btn-block"> <i class="fa fa-plus"
+                            aria-hidden="true"></i> Secondary Banner </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!--  -->
+              </div>
+              <form>
+                <div class="form-group">
+
+                </div>
+              </form>
+            </div>
+          </ng-template>
+          <!-- END:POST ADS/BANNERS -->
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<!--END: FIRST-NAVBAR -->
+
+<!--START: SECOND-NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-light  second-header fixed-top"
+  [ngClass]="{'page-scroll-header': isScrolled}">
+  <div class="container">
+    <a class="navbar-brand" href="#"><img src="assets/img/BuyBusiness.png" alt="" class="brand-image"></a>
+    <button class="navbar-toggler navbar-position" type="button" data-toggle="collapse"
+      data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+      aria-label="Toggle navigation" (click)="isCollapsed = !isCollapsed">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent" [ngbCollapse]="isCollapsed">
+      <ul class="navbar-nav margin-center mr-auto set-nav">
+        <li class="nav-item input-group form-inline">
+          <input type="text" class="form-control sm-6" placeholder="Search For Business" aria-label=""
+            aria-describedby="basic-addon2">
+          <div class="input-group-append">
+            <button class="btn btn-outline-secondary" type="button"> <i class="fa fa-search"></i></button>
+          </div>
+        </li>
+      </ul>
+      <ul class="navbar-nav mr-right set-sell">
+        <!-- START:LOGIN MODAL -->
+        <li class="nav-item mr-3">
+          <a class="nav-link link-right mt-2" (click)="modalLogin(content)" *ngIf="Token == null">Login</a>
+          <ng-template #content let-modal>
+            <img src="assets/img/Logo_png3.png" class="main-logo">
+
+            <div class="modal-header p-2">
+              <h4 class="modal-title text-center">Log In</h4>
+              <button type="button" class="close m-0 p-0" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body p-3">
+              <button type="submit" class="btn btn-primary btn-block bt-fb mb-4" (click)="faceBook()"> <i
+                  class="fa fa-facebook mr-2" aria-hidden="true"></i> Facebook</button>
+              <button type="submit" class="btn btn-primary btn-block bt-gog mb-2" (click)="google()"> <i
+                  class="fa fa-google mr-2" aria-hidden="true"></i> Gmail</button>
+              <form [formGroup]="Loginform" #f="ngForm" (ngSubmit)="onSignin()">
+                <div class="input-group mb-3">
+                  <input type="text" class="form-control" placeholder="Type Your Name" aria-describedby="basic-addon2"
+                    formControlName="username"
+                    [ngClass]="{'form-error':Loginform.controls.username.invalid && (submitted || Loginform.controls.username.touched)}">
+                  <div class="input-group-append">
+                    <span class="input-group-text log-in"><i class="fa fa-user-o" aria-hidden="true"></i></span>
+                  </div>
+                </div>
+                <p class="err"
+                  *ngIf="Loginform.controls['username'].errors?.required && (submitted || Loginform.controls['username'].touched)">
+                  Enter
+                  Your Emial To Login</p>
+                <p class="err"
+                  *ngIf="Loginform.controls['username'].errors?.patternInvalid && (f.submitted || Loginform.controls['username'].touched)">
+                  Please
+                  Enter Valid Email Address </p>
+                <div class="input-group mb-3">
+                  <input type="password" class="form-control" placeholder="Type Your Password"
+                    aria-describedby="basic-addon2" formControlName="password"
+                    [ngClass]="{'form-error':Loginform.controls.password.invalid && (submitted || Loginform.controls.password.touched)}">
+                  <div class="input-group-append">
+                    <span class="input-group-text log-in" id="basic-addon2"><i class="fa fa-lock"
+                        aria-hidden="true"></i></span>
+                  </div>
+                </div>
+                <p class="err"
+                  *ngIf="Loginform.controls['password'].errors?.required && (submitted || Loginform.controls['password'].touched)">
+                  Enter
+                  Your Password</p>
+                <p class="err"
+                  *ngIf="Loginform.controls['password'].errors?.minlength && (f.submitted || Loginform.controls['password'].touched)">
+                  Password
+                  Should Contain 6 Characters </p>
+                <div class="form-group">
+                  <button class="btn btn-primary btn-sm btn-block set-primary" type="submit">Log in</button>
+                </div>
+              </form>
+              <a href="">Forgot Password?</a>
+              <ul class="list-inline text-center">
+                <li class="list-inline-item">
+                  <p>Don't have an account?</p>
+                </li>
+                <li class="list-inline-item">
+                  <a class="set-id" (click)="modalsigin(logincontent)">SignUp</a>
+                </li>
+              </ul>
+            </div>
+          </ng-template>
+        </li>
+        <!-- END:LOGIN MODAL -->
+
+        <li class="nav-item mr-3">
+          <a class="nav-link link-right mt-2" (click)="modalsigin(logincontent)" *ngIf="Token == null"
+            id="OpenSignup">Sign-up</a>
+          <ng-template #logincontent let-modal>
+            <div class="modal-header p-2">
+              <img src="assets/img/Logo_png3.png" class="main-logo">
+              <button type="button" class="close m-0 p-0" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body p-3" *ngIf="HideStatus == 1">
+              <h4 class="modal-title text-center">Sign Up</h4>
+              <button type="submit" class="btn btn-primary btn-block bt-fb " (click)="faceBook()"> <i
+                  class="fa fa-facebook mr-2" aria-hidden="true"></i> Facebook</button>
+              <button type="submit" class="btn btn-primary btn-block bt-gog mb-2" (click)="google()"> <i
+                  class="fa fa-google mr-2" aria-hidden="true"></i> Gmail</button>
+
+              <form [formGroup]="SignupForm" #f="ngForm" (ngSubmit)="onSignup()">
+                <div class="input-group mb-2">
+                  <input type="Email" class="form-control" placeholder="Email" formControlName="email"
+                    [ngClass]="{'form-error':SignupForm.controls.email.invalid && (submitted || SignupForm.controls.email.touched)}"
+                    aria-describedby="basic-addon2">
+                  <div class="input-group-append">
+                    <span class="input-group-text log-in" id="basic-addon2"><i class="fa fa-envelope-o"
+                        aria-hidden="true"></i></span>
+                  </div>
+                </div>
+                <p class="err"
+                  *ngIf="SignupForm.controls['email'].errors?.required && (submitted || SignupForm.controls['email'].touched)">
+                  Enter
+                  Your Email</p>
+                <div class="input-group mb-2">
+                  <input type="Username" class="form-control" placeholder="Username" aria-describedby="basic-addon2"
+                    formControlName="username"
+                    [ngClass]="{'form-error':SignupForm.controls.username.invalid && (submitted || SignupForm.controls.username.touched)}"
+                    aria-describedby="basic-addon2">
+
+                  <div class="input-group-append">
+                    <span class="input-group-text log-in" id="basic-addon2"><i class="fa fa-user-o"
+                        aria-hidden="true"></i></span>
+                  </div>
+                </div>
+                <p class="err"
+                  *ngIf="SignupForm.controls['username'].errors?.required && (submitted || SignupForm.controls['username'].touched)">
+                  Enter
+                  Username</p>
+                <div class="input-group mb-2">
+                  <input type="password" class="form-control" placeholder="Password" aria-describedby="basic-addon2"
+                    formControlName="password"
+                    [ngClass]="{'form-error':SignupForm.controls.password.invalid && (submitted || SignupForm.controls.password.touched)}"
+                    aria-describedby="basic-addon2">
+
+                  <div class="input-group-append">
+                    <span class="input-group-text log-in" id="basic-addon2"><i class="fa fa-lock"
+                        aria-hidden="true"></i></span>
+                  </div>
+                </div>
+                <p class="err"
+                  *ngIf="SignupForm.controls['password'].errors?.required && (submitted || SignupForm.controls['password'].touched)">
+                  Enter
+                  Password</p>
+                <select class="custom-select custom-select-md mb-3" formControlName="country"
+                  [ngClass]="{'form-error':SignupForm.controls.country.invalid && (submitted || SignupForm.controls.country.touched)}"
+                  aria-describedby="basic-addon2" (ngModelChange)="DialCode($event)">
+                  <option value="">Select Your Country</option>
+                  <option *ngFor="let country of Country" [value]="country.id">{{country.name}}</option>
+                </select>
+                <p class="err"
+                  *ngIf="SignupForm.controls['country'].errors?.required && (submitted || SignupForm.controls['country'].touched)">
+                  Select
+                  Your Country</p>
+                <h6>Phone Verfication</h6>
+                <p>This is to ensure a safe and trusted community for buying and selling</p>
+                <div class="input-group mb-2">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">{{DialIndex}}</span>
+                  </div>
+                  <input type="text" class="form-control verify-box" formControlName="phone_number"
+                    [ngClass]="{'form-error':SignupForm.controls.phone_number.invalid && (submitted || SignupForm.controls.phone_number.touched)}"
+                    aria-describedby="basic-addon2">
+
+                  <div class="input-group-append">
+                    <a class="btn btn-primary verify-btn" role="button" (click)="Onopen(content)"
+                      (click)="OnOpt()">Verify</a>
+                  </div>
+                  <ng-template #content let-modal>
+                    <button type="button" class="close profile-close" aria-label="Close"
+                      (click)="modal.dismiss('Cross click')">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                    <div class="modal-body p-3">
+                      <h5 class="modal-title mb-3 otp-head"><strong>Please Enter The OTP To Verify Your Account</strong>
+                      </h5>
+                      <p class="otp-para">A OTP has been sent to Your Mobile Number</p>
+                      <form [formGroup]="OtpVerification" #f="ngForm" (ngSubmit)="sendOtp()">
+                        <div class="form-group">
+                          <mat-form-field class="example-full-width set-border">
+                            <input matInput placeholder="Enter OTP" type="number" error-set formControlName="token">
+                          </mat-form-field>
+                        </div>
+                        <div class="row">
+                          <div class="form-group text-center col-sm-6">
+                            <button mat-raised-button color="primary" class="pt-1" data-dismiss="content">Verify
+                              OTP</button>
+                          </div>
+                          <div class="form-group text-center col-sm-6">
+                            <button mat-button>Re Send OTP</button>
+                          </div>
+                        </div>
+
+                      </form>
+                    </div>
+                  </ng-template>
+                </div>
+                <p class="err"
+                  *ngIf="SignupForm.controls['phone_number'].errors?.required && (submitted || SignupForm.controls['phone_number'].touched)">
+                  Enter
+                  Phone Number</p>
+                <div class="form-group">
+                  <button class="btn btn-primary btn-sm btn-block set-primary" type="submit">Sign up</button>
+                </div>
+                <ul class="list-inline text-center">
+                  <li class="list-inline-item">
+                    <p>Already have an account?</p>
+                  </li>
+                  <li class="list-inline-item">
+                    <a (click)="modalLogin(content)">Log in</a>
+                  </li>
+                </ul>
+              </form>
+            </div>
+            <!--  -->
+            <div class="modal-body description-modal" *ngIf="HideStatus == 2">
+              <div class="alert alert-success text-center" role="alert">
+                <h5 class="text-sucess text-uppercase" *ngIf="responseData.status == 'success'">
+                  {{responseData.status}}</h5>
+                <h5 class="text-danger text-uppercase" *ngIf="responseData.status == 'failed'"> {{responseData.status}}
+                </h5>
+                <div class="set-img">
+                  <img src="assets/img/tick.png" alt="[]" *ngIf="responseData.status == 'success'">
+                  <img src="assets/img/error.png" alt="[]" *ngIf="responseData.status == 'failed'">
+                  <p class="text-center text-sucess" *ngIf="responseData.status == 'success'">
+                    {{responseData.description}}</p>
+                  <p class="text-center text-danger" *ngIf="responseData.status == 'failed'">
+                    {{responseData.description}}</p>
+                </div>
+                <a href="" class="text-center text-capitalize" *ngIf="responseData.status == 'success'"
+                  (click)="modal.dismiss('Cross click')">Please
+                  Login To Continue</a>
+              </div>
+            </div>
+          </ng-template>
+        </li>
+        <!-- START:SIGNUP MODAL -->
+        <li class="nav-item" id="user-dropdown" *ngIf="Token != null">
+          <div ngbDropdown>
+            <button class="btn btn-default" id="dropdownBasic1" ngbDropdownToggle>
+              <img src="assets/img/user-img.png" alt="[User-Profile]" title="Cristiano Ronaldo">
+            </button>
+            <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+              <button class="dropdown-item"> <i class="fa fa-bars mr-1" aria-hidden="true"></i> Activity </button>
+              <button class="dropdown-item" routerLink="/my-profile"> <i class="fa fa-user mr-1" aria-hidden="true"></i>
+                Profile </button>
+              <button class="dropdown-item" routerLink="/chat"> <i class="fa fa-comments mr-1" aria-hidden="true"></i>
+                Chat
+              </button>
+              <button class="dropdown-item" routerLink="/setting"> <i class="fa fa-puzzle-piece mr-1"
+                  aria-hidden="true"></i> Setting
+              </button>
+              <div class="dropdown-divider"></div>
+              <button class="dropdown-item" (click)="LogOut()"><i class="fa fa-sign-out mr-1" aria-hidden="true"></i>
+                Logout </button>
+            </div>
+          </div>
+        </li>
+        <!-- END:SIGNUP MODAL -->
+        <!-- START:SELL -->
+        <li class="nav-item">
+          <a class="nav-link link-right btn-sm btn-default mt-2" (click)="Onopen(content)"> Sell </a>
+        </li>
+        <!-- END:SELL -->
+      </ul>
+    </div>
+  </div>
+</nav>
+<!--END: SECOND-NAVBAR -->

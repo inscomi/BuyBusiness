@@ -1,0 +1,114 @@
+<section class="sigin-banner">
+  <div class="container-fluid">
+    <div class="login-signup">
+      <div class="row justify-content-center">
+        <div class="col-md-5 ">
+          <ngb-tabset #t="ngbTabset">
+            <ngb-tab id="tab-selectbyid1" title="">
+              <ng-template ngbTabTitle> <i class="fa fa-sign-in" aria-hidden="true"></i> Sign-In</ng-template>
+              <ng-template ngbTabContent>
+                <form [formGroup]="loginform" #f="ngForm" (ngSubmit)="onSubmit()">
+                  <div class="form-group">
+                    <input type="text" class="form-control" id="" formControlName="Username" [ngClass]="{'form-error':loginform.controls.Username.invalid && (submitted || loginform.controls.Username.touched)}"
+                      placeholder="Username">
+                    <p class="err" *ngIf="loginform.controls['Username'].errors?.required && (submitted || loginform.controls['Username'].touched)">Username
+                      required</p>
+                  </div>
+                  <div class="form-group">
+                    <input type="Password" class="form-control" id="" formControlName="Password" [ngClass]="{'form-error':loginform.controls.Password.invalid && (submitted || loginform.controls.Password.touched)}"
+                      placeholder="Password">
+                    <p class="err" *ngIf="loginform.controls['Password'].errors?.required && (submitted || loginform.controls['Password'].touched)">Password
+                      required</p>
+                  </div>
+                  <div class="form-check">
+                    <input type="checkbox" class="form-check-input">
+                    <label class="form-check-label" for="exampleCheck1">Keep signed-in</label>
+                  </div>
+                  <div class="form-row">
+                    <div class="form-group col">
+                      <button type="submit" class="btn btn-success btn-block bt-submit">Submit</button>
+                    </div>
+                    <div class="form-group col">
+                      <button type="submit" class="btn btn-success btn-block bt-submit">Forgot Password</button>
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="form-row">
+                    <div class="col-md-12 form-group set-value">
+                      <button type="submit" class="btn btn-primary 
+                             btn-block bt-fb "> <i
+                          class="fa fa-facebook mr-2" aria-hidden="true"></i> Facebook</button>
+                    </div>
+                    <div class="col-md-12 form-group set-value">
+                      <button type="submit" class="btn btn-primary btn-block bt-tw"> <i class="fa fa-twitter mr-2"
+                          aria-hidden="true"></i>
+                        Twitter</button>
+                    </div>
+                    <div class="col-md-12 form-group set-value">
+                      <button type="submit" class="btn btn-primary btn-block bt-gog"> <i class="fa fa-google mr-2"
+                          aria-hidden="true"></i>
+                        Gmail</button>
+                    </div>
+                  </div>
+                </form>
+                <div class="footer-section text-center">
+                  <ul class="list-unstyled">
+                    <li><a href="#">Terms of Use</a></li>
+                    <li><a href="#">Privacy Statement</a></li>
+                  </ul>
+                </div>
+              </ng-template>
+            </ngb-tab>
+            <ngb-tab id="tab-selectbyid2">
+              <ng-template ngbTabTitle><i class="fa fa-plus-circle" aria-hidden="true"></i> Sign-up</ng-template>
+              <ng-template ngbTabContent>
+                <form [formGroup]="SignupForm" #f="ngForm" (ngSubmit)="onSubmited()">
+                  <div class="form-group">
+                    <input type="email" class="form-control" id="" formControlName=" Signup_Email" placeholder="Email"
+                      [ngClass]="{'form-error':SignupForm.controls. Signup_Email.invalid && (submit || SignupForm.controls. Signup_Email.touched)}">
+                    <p class="err" *ngIf="SignupForm.controls['Signup_Email'].errors?.required && (submit || SignupForm.controls['Signup_Email'].touched)">
+                      Email required</p>
+                  </div>
+                  <div class="form-group">
+                    <input type="name" class="form-control" id="" formControlName="Signup_Name" [ngClass]="{'form-error':SignupForm.controls.Signup_Name.invalid && (submit|| SignupForm.controls.Signup_Name.touched)}"
+                      placeholder="Username">
+                    <p class="err" *ngIf="SignupForm.controls['Signup_Name'].errors?.required && (submit || SignupForm.controls['Signup_Name'].touched)">Name
+                      required</p>
+                  </div>
+                  <div class="form-group">
+                    <input type="Password" class="form-control" id="" formControlName="Signup_Password" [ngClass]="{'form-error':SignupForm.controls.Signup_Password.invalid && (submit || SignupForm.controls.Signup_Password.touched)}"
+                      placeholder="Password">
+                    <p class="err" *ngIf="SignupForm.controls['Signup_Password'].errors?.required && (submit || SignupForm.controls['Signup_Password'].touched)">Password
+                      required</p>
+                  </div>
+                  <div class="form-group">
+                    <input type="confirmPassword" class="form-control" id="" formControlName="Signup_Confirmpassword"
+                      [ngClass]="{'form-error':SignupForm.controls.Signup_Confirmpassword.invalid && (submit || SignupForm.controls.Signup_Confirmpassword.touched)}"
+                      placeholder="Confirm Password">
+                    <p class="err" *ngIf="SignupForm.controls['Signup_Confirmpassword'].errors?.required && (submit || SignupForm.controls['Signup_Confirmpassword'].touched)">confirm
+                      Password
+                      required</p>
+                  </div>
+                  <div class="form-check">
+                    <input type="checkbox" class="form-check-input">
+                    <label class="form-check-label" for="exampleCheck1">Please accept the terms and conditions to
+                      proceed with your request.</label>
+                  </div>
+                  <div class="form-group col">
+                    <button type="submit" class="btn btn-success btn-block bt-submit">Sign-up</button>
+                  </div>
+                </form>
+                <div class="footer-section text-center">
+                  <ul class="list-unstyled">
+                    <li><a href="#">Terms of Use</a></li>
+                    <li><a href="#">Privacy Statement</a></li>
+                  </ul>
+                </div>
+              </ng-template>
+            </ngb-tab>
+          </ngb-tabset>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

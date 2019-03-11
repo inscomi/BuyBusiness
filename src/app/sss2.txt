@@ -1,0 +1,20 @@
+      <owl-carousel-o [options]="customOptions" >
+                    <ng-template carouselSlide  *ngFor="let title2 of Bgrid.eightCellsGrid.CellData">
+                        <li class="list-inline-item" >
+                      <div class="card product-card">
+                        <img class="product-img" src="/assets/img/AG-1.jpg" alt="Business Sale">
+                        <div class="set-pos">
+                          <div class="row">
+                            <div class="col-sm-8">
+                              <h5 class="sub-head">{{title.cellTitle}}</h5>
+                            </div>
+                            <div class="col-sm-4 text-right">
+                              <span class="likes">
+                                <i class="fa fa-heart fa-set" aria-hidden="true"></i>{{title.likes}}</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </li>
+                    </ng-template>
+                  </owl-carousel-o>
