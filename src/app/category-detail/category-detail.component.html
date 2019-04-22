@@ -1,0 +1,352 @@
+<!--  -->
+<div ui-view="header" autoscroll="true">
+  <div class="category-detail">
+    <div class="container">
+      <!-- ADD BANNER -->
+      <!-- <div class="add-banner" *ngIf="listingTop && listingTop.length >= 1">
+        <img [src]="listingTop[0]" alt="add-banner" class="add-image">
+      </div> -->
+      <div class="col-sm-12 col-md-8 mx-auto">
+          <div class="top-banner mt-3">
+            <owl-carousel-o [options]="topBanner"  *ngIf="listingTop && listingTop.length >= 1">
+              <ng-container *ngFor="let listingTopimages of listingTop">
+              <ng-template carouselSlide>
+                <img [src]="listingTopimages" class="add-image">
+              </ng-template>
+              </ng-container>
+              </owl-carousel-o>
+          </div>
+        </div>
+      <!-- ADD BANNER -->
+      <section class="pad-30">
+        <div class="row">
+          <div class="col-sm-12 col-12 col-md-12">
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb ft-sz">
+                <li class="breadcrumb-item">
+                  <a routerLink="/">
+                    <i class="fa fa-home mr-2" aria-hidden="true"></i>Home</a>
+                </li>
+                <li class="breadcrumb-item">
+                  <a routerLink="/category-list">Category Listing</a>
+                </li>
+                <li class="breadcrumb-item active" aria-current="page">Produt Detail</li>
+              </ol>
+            </nav>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-12 col-md-6 col-12">
+            <ngx-gallery [options]="galleryOptions" [images]="galleryImages"></ngx-gallery>
+          </div>
+          <!-- *ngFor="let data of productdetail" -->
+          <div class="col-sm-12 col-md-6 col-12">
+            <div class="card common-card">
+              <h4 class="card-title ml-2" *ngIf="productdetail">{{productdetail.productTitle}}</h4>
+              <div class="d-inline-block chat-right" ngbDropdown #myDrop="ngbDropdown">
+                <button class="btn btn-icon-style" id="dropdownManual" ngbDropdownToggle><i
+                    class="fa fa-ellipsis-h fa-lg"></i></button>
+                <ul ngbDropdownMenu aria-labelledby="dropdownManual">
+                  <li class="dropdown-item" (click)="modalContent(content)">Report Listing </li>
+                  <ng-template #content let-modal>
+                    <div class="modal-header p-3">
+                      <h4 class="modal-title text-center">Why are you reporting this listing?</h4>
+                      <button type="button" class="close m-0 p-0" aria-label="Close"
+                        (click)="modal.dismiss('Cross click')">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body p-3">
+                      <select class="form-custom">
+                        <option value="0">Selling Prohibited Item</option>
+                        <option value="1">Mispriced Listing</option>
+                        <option value="2">Duplicate Posts</option>
+                        <option value="3">Irrelevant</option>
+                        <option value="4">Offensive</option>
+                      </select>
+                      <ul class="list-inline mt-2">
+                        <li class="list-inline-item">
+                          <p class="mt-2">This listings does not advertise the actual price that the seller is willing
+                            to transact at.</p>
+                        </li>
+                      </ul>
+                      <div class="pull-right">
+                        <button class="btn btn-primary">Submit</button>
+                      </div>
+                    </div>
+
+                  </ng-template>
+                </ul>
+              </div>
+              <div class="card-body">
+                <!--  -->
+                <div class="show-right3 d-flex">
+                  <div class="btn-group flex-fill" role="group" aria-label="Basic example">
+
+                    <button type="button" class="btn btn-outline-dark btn-block"
+                      (click)="LikeHit(productdetail.productLikes)" *ngIf="loggedInUser != null">
+                      <input id="toggle-heart" type="checkbox" />
+                      <label for="toggle-heart">❤</label> Like
+                    </button>
+
+                    <button type="button" class="btn btn-outline-dark btn-block"
+                      (click)="LikeHit(productdetail.productLikes)" *ngIf="loggedInUser == null" routerLink="/chat">
+                      <input id="toggle-heart" type="checkbox" />
+                      <label for="toggle-heart">❤</label> Like
+                    </button>
+
+                    <button type="button" class="btn btn-outline-dark btn-block"
+                      *ngIf="loggedInUser != null && productdetail.productPostedBy.username != loggedInUser"> <i
+                        class="fa fa-comments-o fa-1x mr-2" aria-hidden="true" (click)="productChat()"
+                        (disabled)="chatInitiated"></i> Chat
+                    </button>
+
+                    <button type="button" class="btn btn-outline-dark btn-block"
+                      *ngIf="loggedInUser != null && productdetail.productPostedBy.username == loggedInUser">
+                      <i class="fa fa-comments-o fa-1x mr-2" aria-hidden="true" routerLink="/chat"> View {{ chatCount }} Chat </i>
+                    </button>
+
+                    <button type="button" class="btn btn-outline-dark btn-block"
+                      *ngIf="loggedInUser == null">
+                      <a routerLink="/chat"><i class="fa fa-comments-o fa-1x mr-2" aria-hidden="true">  Chat </i></a>
+                    </button>
+
+                    <button type="button" class="btn btn-outline-dark btn-block"> <i class="fa fa-dollar fa-1x mr-2"
+                        aria-hidden="true"> Make Offer </i>
+                    </button>
+
+                  </div>
+                </div>
+                <!--  -->
+                <ul class="list-group detail-list ml-2">
+                  <li class="list-group-item" *ngIf="productdetail">
+                    <i class="fa fa-bolt fa-set" aria-hidden="true"></i>{{productdetail.productThunder}} by
+                    <a class="text-primary" routerLink="/user-profile/{{productdetail.productPostedBy.username}}">{{productdetail.productPostedBy.username}}</a>
+                  </li>
+                  <li class="list-group-item" *ngIf="productdetail">
+                    <i class="fa fa-usd fa-set" aria-hidden="true"></i> ${{productdetail.productCost}}</li>
+                  <li class="list-group-item">
+                    <i class="fa fa-heart fa-set" aria-hidden="true"></i>{{ likes }}</li>
+                  <li class="list-group-item">
+                    <i class="fa fa-exclamation fa-set" aria-hidden="true"></i> In Condos & ECs
+                  </li>
+                  <li class="list-group-item" *ngIf="productdetail">
+                    <p [ngClass]="{'show': show}" class="set-field"> <i class="fa fa-bars fa-set"
+                        aria-hidden="true"></i>
+                      {{productdetail.productDescription}}
+                    </p>
+                    <a (click)="show = !show" class="read-more">{{ show ? 'Show less': 'Show More' }}</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <!--  -->
+          <div class="col-sm-12 col-md-6 col-12">
+            <div class="card set-card2 mt-2 mb-2">
+              <div class="card-body">
+                <h6 class="bg-ctm">Share This Listing</h6>
+                <ul class="list-inline mb-0">
+                  <li class="list-inline-item">
+                    <button type="submit" class="btn btn-primary bt-fb"> <i class="fa fa-facebook"
+                        aria-hidden="true"></i>
+                    </button>
+                  </li>
+                  <li class="list-inline-item">
+                    <button type="submit" class="btn btn-primary bt-gog"> <i class="fa fa-google"
+                        aria-hidden="true"></i>
+                    </button>
+                  </li>
+                  <li class="list-inline-item">
+                    <button type="submit" class="btn btn-primary bt-tw"> <i class="fa fa-twitter"
+                        aria-hidden="true"></i>
+                    </button>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <!--  -->
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="card set-card">
+                  <div class="card-body">
+                    <h6 class="bg-ctm">Public Comments</h6>
+                    <div class="media mb-3" *ngFor="let comment of comments">
+                      <img class="mr-3 user-img public-img" src="assets/img/user.png">
+                      <div class="media-body ml-2">
+                        <div class="media-content public-media">
+                          <h6 class="mt-0 mb-0 text-content">{{ comment.sender }}
+                            <!-- <span class="txt-md">2 hours ago</span> -->
+                          </h6>
+                          <p class="mb-2 "> {{ comment.comment }}</p>
+                        </div>
+                      </div>
+                    </div>
+                    <form [formGroup]="commentForm" (ngSubmit)="onSubmit()" class="form-horizontal">
+                      <textarea class="form-control form-focus mt-2" formControlName="comment" cols="6" rows="3"
+                        [ngClass]="{'form-error':commentForm.controls.comment.invalid && (submitted || commentForm.controls.comment.touched)}"
+                        required></textarea>
+                      <button type="submit" class="btn btn-primary mt-2  btn-block chng"
+                        [disabled]="commentForm.controls.comment.invalid">Post a New Comment</button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!--  -->
+          </div>
+          <div class="col-sm-12 col-md-6 col-12">
+            <div class="card set-card2 mt-2 mb-2">
+              <div class="card-body">
+                <h6 class="bg-ctm">Getting This</h6>
+                <ul class="list-inline mb-0">
+                  <li class="list-inline-item ">
+                    <i class="fa fa-home fa-set" aria-hidden="true"></i>
+                    Mailing & Delivery
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="card set-card mt-3">
+              <div class="card-body">
+                <h6 class="bg-ctm">Meet The Seller</h6>
+                <div class="media">
+                  <img class="mr-3 media-object" src="./assets/img/user-img.png" alt="Generic placeholder image">
+                  <div class="media-body" *ngIf="productdetail">
+                    <h6 class="mt-0 bg-ctm text-primary"><a routerLink="/user-profile/{{productdetail.productPostedBy.username}}">{{productdetail.productPostedBy.username}}</a></h6>
+                    <h6 class="m-0 ">{{productdetail.productPostedBy.email}} </h6>
+                    <!-- <p class="m-0">Joined 1 Month  Ago
+                            <i class="fa fa-clock-o" aria-hidden="true"></i>
+                          </p> -->
+                    <p class="mt-0 text-primary">Verified
+                      <i class="fa fa-envelope" aria-hidden="true"></i>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--End:Car Details  -->
+        </div>
+      </section>
+    </div>
+    <!--  -->
+
+    <!--START : YOU MAY ALSO LIKE-->
+    <section class="pad-15 popular-business">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-3 col-12">
+            <hr class="progressd">
+          </div>
+          <div class="col-md-6 col-12">
+            <h4 class="sub-heading text-center mb-0">YOU MAY ALSO LIKE</h4>
+          </div>
+          <div class="col-md-3 col-12">
+            <hr class="progressd">
+          </div>
+        </div>
+
+        <div class="row product-data">
+          <div class="col-sm-6 col-6 col-md-3 col-lg-2 custom-style p-1"
+            *ngFor="let title of freshFindings let i = index">
+            <div class="card" [ngClass]="{'example-1': title.productHighlight}">
+              <!-- routerLink="/category-detail/{{title.productPostingID}}" -->
+              <div class="image hovereffectd" (click)="redirectToDetail(title.productPostingID)">
+                <span class="badge badge-pill badge-danger ml-2 thunder-badge">
+                  <i class="fa fa-bolt mr-2 " aria-hidden="true"></i>
+                  {{title.productThunder}}</span>
+                <span class="badge badge-secondary">
+                  <i class="fa fa-heart" aria-hidden="true"></i>
+                  {{title.productLikes}}
+                </span>
+
+                <img class="card-img-top get-img" src="{{title.coverimage}}" alt="Card image cap"
+                  *ngIf="title.mediatype == 'image' || title.mediatype =='' || (!title.mediatype)">
+                <video class="card-img-top get-img" poster="../../../assets/img/video.png" alt="Card image cap"
+                  *ngIf="title.mediatype == 'video'">
+                  <source src="{{title.coverimage}}">
+                </video>
+                <div class="set-pos overlayd" *ngIf="productDetails">
+                  <h6 class="content">
+                    <i class="fa fa-map-marker mr-2" aria-hidden="true"></i>32 Chennai Boulevard
+                    East</h6>
+                  <h6 class="content mt-2">
+                    <i class="fa fa-phone mr-2" aria-hidden="true"></i>+91 9895147852
+                  </h6>
+                </div>
+              </div>
+              <div class="user-img">
+                <img src="./assets/img/user-img.png" class="item">
+              </div>
+              <div class="card-body">
+                <ul class="list-inline set-inline mb-0">
+                  <h6 class="heading" routerLink="/category-detail">{{title.productTitle}}</h6>
+                  <h6 class="make m-0"> Audi</h6>
+                  <h6 class="make m-0"><i class="fa fa-usd mr-1" aria-hidden="true"></i>{{title.productCost}}</h6>
+                  <p class="description">{{title.productDescription}}</p>
+                  <li class="list-inline-item"> <button type="button" class="btn btn-custom"><i class="fa fa-heart"
+                        aria-hidden="true">&nbsp;</i>{{title.productLikes}}</button></li>
+                  <li class="list-inline-item pdt-rpt pull-right pt-1" ngbDropdown>
+                    <button class="btn btn-sm btn-ctm p-0" id="dropdownConfig" ngbDropdownToggle><i
+                        class="fa fa-ellipsis-h"></i></button>
+                    <ul ngbDropdownMenu aria-labelledby="dropdownConfig">
+                      <li class="dropdown-item" (click)="modalContent1(content)">Report Listing </li>
+                      <ng-template #content let-modal>
+                        <div class="modal-header p-3">
+                          <h4 class="modal-title text-center">Why are you reporting this listing?</h4>
+                          <button type="button" class="close m-0 p-0" aria-label="Close"
+                            (click)="modal.dismiss('Cross click')">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body p-3">
+                          <select class="form-custom">
+                            <option value="0">Selling Prohibited Item</option>
+                            <option value="1">Mispriced Listing</option>
+                            <option value="2">Duplicate Posts</option>
+                            <option value="3">Irrelevant</option>
+                            <option value="4">Offensive</option>
+                          </select>
+                          <ul class="list-inline mt-2">
+                            <li class="list-inline-item">
+                              <p class="mt-2">This listings does not advertise the actual price that the seller is
+                                willing
+                                to transact at.</p>
+                            </li>
+                          </ul>
+                          <div class="pull-right">
+                            <button class="btn btn-primary">Submit</button>
+                          </div>
+                        </div>
+
+                      </ng-template>
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!--END : YOU MAY ALSO LIKE-->
+    <!-- ADD BANNER -->
+    <!-- <div class="add-banner" *ngIf="listingBottom && listingBottom.length >= 1">
+      <img [src]="listingBottom[0]" alt="add-banner" class="add-image">
+    </div> -->
+    <div class="col-sm-12 col-md-8 mx-auto">
+        <div class="bottom-banner mb-3">
+           <owl-carousel-o [options]="bottomBanner"  *ngIf="listingBottom && listingBottom.length >= 1">
+            <ng-container *ngFor="let listingBottomimages of listingBottom">
+            <ng-template carouselSlide>
+              <img [src]="listingBottomimages" class="add-image">
+            </ng-template>
+            </ng-container>
+          </owl-carousel-o>
+        </div>
+      </div>
+    <!-- ADD BANNER -->
+  </div>
+</div>
+<!--  -->

@@ -1,0 +1,229 @@
+<section class="add-banner">
+  <div class="container">
+    <!-- START:POST ADS/BANNERS -->
+    <div class="card">
+
+      <div class="card-body">
+        <div class="banner-card" *ngIf="currentPosition == 1">
+          <h5 class="card-title" id="modal-basic-title">Post Ads and Banner</h5>
+          <!-- <form>
+            <div class="form-row ">
+              <div class="form-group col-md-6">
+                <select id="inputState" class="form-control">
+                  <option value="1" selected="selected">Leaderboard (728px x 90px)</option>
+                  <option value="2">Large Mobile Banner (320px x 100px)</option>
+                  <option value="3">Square (250px x 250px)</option>
+                  <option value="4">Wide Skyscraper (160px x 600px)</option>
+                  <option value="50">Sponsored Links (320px x 100px)</option>
+                </select>
+              </div>
+              <div class="form-group custom-file col-md-6">
+                <input type="file" class="custom-file-input" id="customFile">
+                <label class="custom-file-label" for="customFile">Choose file</label>
+              </div>
+            </div>
+            <h4 class="text-center md-banner">Basic Information</h4>
+            <div class="form-row ">
+              <div class="form-group col-md-4">
+                <label for="inputState" class="lb-ctm">Account</label>
+                <select id="inputState" class="form-control">
+                  <option selected>No Owner</option>
+                  <option>User-1</option>
+                  <option>User-2</option>
+                  <option>User-3</option>
+                </select>
+              </div>
+              <div class="form-group col-md-4">
+                <label for="inputState" class="lb-ctm">Status</label>
+                <select id="inputState" class="form-control">
+                  <option selected>Active</option>
+                  <option>Suspend</option>
+                  <option>Pending</option>
+                </select>
+              </div>
+              <div class="form-group col-md-4">
+                <label for="inputState" class="lb-ctm">Renewal Date</label>
+                <input type="date" class="form-control" id="date">
+              </div>
+            </div>
+            <h4 class="text-center md-banner">Banner Details</h4>
+            <div class="form-row ">
+              <div class="custom-control custom-radio custom-control-inline ">
+                <input type="radio" id="customRadioInline1" name="customRadioInline1" class="custom-control-input">
+                <label class="custom-control-label" for="customRadioInline1">General Page</label>
+              </div>
+              <div class="custom-control custom-radio custom-control-inline">
+                <input type="radio" id="customRadioInline2" name="customRadioInline1" class="custom-control-input">
+                <label class="custom-control-label" for="customRadioInline2">Listing</label>
+              </div>
+              <div class="custom-control custom-radio custom-control-inline">
+                <input type="radio" id="customRadioInline3" name="customRadioInline1" class="custom-control-input">
+                <label class="custom-control-label" for="customRadioInline3">Deal</label>
+              </div>
+              <div class="custom-control custom-radio custom-control-inline">
+                <input type="radio" id="customRadioInline4" name="customRadioInline1" class="custom-control-input">
+                <label class="custom-control-label" for="customRadioInline4">Event</label>
+              </div>
+              <div class="custom-control custom-radio custom-control-inline">
+                <input type="radio" id="customRadioInline5" name="customRadioInline1" class="custom-control-input">
+                <label class="custom-control-label" for="customRadioInline5">Classified</label>
+              </div>
+              <div class="custom-control custom-radio custom-control-inline">
+                <input type="radio" id="customRadioInline6" name="customRadioInline1" class="custom-control-input">
+                <label class="custom-control-label" for="customRadioInline6">Article</label>
+              </div>
+            </div>
+            <div class="form-row ">
+              <div class="form-group col-md-6">
+                <label for="inputState" class="lb-ctm">Category</label>
+                <select id="inputState" class="form-control">
+                  <option selected>Pages</option>
+                  <option>page-1</option>
+                  <option>page-2</option>
+                  <option>page-3</option>
+                </select>
+              </div>
+              <div class="form-group col-md-6">
+                <label for="inputState" class="lb-ctm">Promocode</label>
+                <input class="form-control" type="text" placeholder="Enter Promocode">
+              </div>
+            </div>
+            <div class="text-center mb-4">
+              <button type="submit" class="btn btn-secondary mr-3">Cancel</button>
+              <button type="submit" class="btn btn-primary">Buy</button>
+            </div>
+          </form> -->
+          <form [formGroup]="subBannerForm">
+            <div class="d-flex view-banner mb-4 justify-content-center">
+              <img [src]="url  ? url : '/assets/img/sub-banner.png'" class="img-fluid">
+            </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <select id="inputState" class="form-control" formControlName="position" (ngModelChange)=getPosition($event)>
+                <option value="" disabled="disabled" selected="selected">Please select position</option>
+                <option value="homepageTop">Homepage Top Banner</option>
+                <option value="homepageBottom">Homepage Bottom Banner</option>
+                <option value="homepageMain">Homepage Main Banner</option>
+                <option value="homepageRightTop">Homepage Main Right Top Banner</option>
+                <option value="homepageRightBottom">Homepage Main Right Bottom Banner</option>
+                <option value="listingTop">Listing Top Banner</option>
+                <option value="listingBottom">Listing Bottom Banner</option>
+                <option value="listingRight">Listing Right Banner</option>
+                <!-- <option value="detailTop">Detail page Top Banner</option>
+                <option value="detailBottom">Detail page Bottom Banner</option> -->
+              </select>
+            </div>
+            <div class="form-group custom-file col-md-6">
+              <input type="file" class="custom-file-input" (change)="detectFiles($event)" id="customFile">
+              <label class="custom-file-label" for="customFile">Choose file</label>
+            </div>
+          </div>
+          <div class="form-row" *ngIf="categoryShow">
+            <div class="form-group col-md-4">
+              <label for="inputState" class="lb-ctm">Title</label>
+              <select formControlName="title" class="form-control" (ngModelChange)=getCategoryRelatedToTitle($event)>
+              <option value="" disabled="disabled" selected="selected">Please select a Title</option>
+              <option [ngValue]="title._id" *ngFor="let title of titles">{{title.TitleName}}</option>
+              </select>
+            </div>
+            <div class="form-group col-md-4">
+              <label for="inputState" class="lb-ctm">Category</label>
+              <select formControlName="category" class="form-control" (ngModelChange)=getCategoryId($event)>
+              <option value="" disabled="disabled" selected="selected">Please select a category</option>
+              <option [ngValue]="category._id" *ngFor="let category of categories">{{category.CategoryName}}</option>
+              </select>
+            </div>
+            <div class="form-group col-md-4">
+              <label for="inputState" class="lb-ctm">Sub Category</label>
+              <select formControlName="subcategory" class="form-control" multiple (ngModelChange)=getSubCategoryId($event)>
+              <option value="" disabled="disabled" selected="selected">Please select a sub category</option>
+              <option [ngValue]="subcategory.ScatID" *ngFor="let subcategory of subcategories">{{subcategory.SubCatName}}</option>
+              </select>
+            </div>
+          </div>
+            <div class="text-center mb-4">
+          <button type="submit" class="btn btn-secondary mr-3">Cancel</button>
+          <button type="submit" class="btn ad-w btn-primary"
+            (click)="modalBuy(Buycontent)">Buy</button>
+        </div>
+        </form>
+        </div>
+        <!--START : PURCHASE-->
+        <div class="product-listing" *ngIf="currentPosition == 2">
+          <!--*ngIf="currentPosition == 1"-->
+          <div class="go-back">
+            <i class="fa fa-arrow-left set-fa" aria-hidden="true" (click)="goBack()"></i>
+          </div>
+
+
+          <div class="row modal-red">
+            <div class="col-md-6 ">
+              <h4>Banner</h4>
+              <p>Improve chances of selling by showing your listing to the right people in the right places.</p>
+              <p>know more</p>
+            </div>
+            <div class="col-md-6">
+              <img src="./assets/img/head.PNG" class="pull-right mt-3">
+            </div>
+          </div>
+
+
+          <div class="row">
+            <div class="col-md-12">
+              <p><i class="fa fa-lightbulb-o text-primary"></i> 29
+                Spotlight ads running in this category.
+                Increase your priority to stand out.</p>
+              <h4 class="main-head">Select Your Plan</h4>
+            </div>
+            <div class="col-md-6 tab-head text-center">
+              Select Your Budget
+            </div>
+            <div class="col-md-6 tab-head text-center">
+              Current Balance : {{ userCoins }} <img src="./assets/img/coins.png" class="label-img">
+            </div>
+          </div>
+
+
+          <div class="row pd-head" *ngFor="let coinPromotion of validCoinPromotions">
+            <div class="col-md-5 text-center">
+              <p>{{ coinPromotion.noOfCoins }} <img src="./assets/img/coins.png" class="label-img">
+                <span class="sl-txt"> for {{ coinPromotion.expiryDay }} days ({{ coinPromotion.numberOfCoupons }} views)</span>
+              </p>
+              <!-- <p>5000 <img src="./assets/img/coins.png" class="label-img"></p> -->
+            </div>
+            <div class="col-md-2 text-center">
+              <p>→</p>
+              <!-- <p>→</p> -->
+            </div>
+            <div class="col-md-5 text-center">
+              <p><button type="button" class="btn md-btn btn-primary" (click) = "postBanner(coinPromotion)" [disabled]="userCoins < coinPromotion.noOfCoins">Buy <img src="./assets/img/coins.png"
+                    class="label-img"></button></p>
+              <!-- <p><button type="button" class="btn md-btn btn-primary">Buy <img src="./assets/img/coins.png"
+                    class="label-img"></button></p> -->
+            </div>
+          </div>
+
+
+          <div class="row ft-br">
+            <div class=col-md-12>
+              <p><span class="alert-primary alert-text"><i class="fa fa-warning text-primary" aria-hidden="true"></i>
+                  <!-- You need 2,939 more coins. Continue buying coins to run Banner.-->
+                  If you run out of coins, click Buy More Coins
+                  </span></p>
+            </div>
+            <div class="col-md-6">
+              <p class="mb-0">Select Coin plans</p>
+              <p>And Buy it</p>
+            </div>
+            <div class="col-md-6"><button type="button" class="btn btn-primary pull-right" routerLink="/my-profile">Buy More Coins</button></div>
+          </div>
+
+
+        </div>
+        <!--END : PURCHASE-->
+      </div>
+
+    </div>
+    <!-- END:POST ADS/BANNERS -->
+  </div>
+</section>

@@ -12,7 +12,8 @@ export class ChatService {
     private socket;
 
     constructor() {
-      this.socket = io('https://bbrevampv2.herokuapp.com',{
+      // https://bbrevampv2.herokuapp.com
+      this.socket = io('http://ec2-3-1-222-182.ap-southeast-1.compute.amazonaws.com:3000',{
       });
     //   var token = localStorage.token;
     // var socket = io.connect('http://localhost:3000', {
@@ -27,6 +28,30 @@ export class ChatService {
 
     public sendMessage(message) {
         this.socket.emit('message', message);
+    }
+
+    public followUser(followDetails){
+      this.socket.emit('followUser', followDetails);
+    }
+
+    public postComment(comment){
+      this.socket.emit('postComment', comment);
+    }
+
+    public sendLikes(likeCount){
+        this.socket.emit('likeHit', likeCount);
+    }
+
+    public updateProductViews(productPostingId){
+      this.socket.emit('updateProductViews', productPostingId);
+    }
+
+    public searchProduct(searchElement){
+      this.socket.emit('searchProduct', searchElement);
+    }
+
+    public filterProduct(filterQuery){
+      this.socket.emit('filterProduct', filterQuery);
     }
 
     public makeUserOnline(user) {
@@ -58,6 +83,39 @@ export class ChatService {
         return Observable.create((observer) => {
             this.socket.on('message', (message) => {
                 observer.next(message);
+            });
+        });
+    }
+
+    public getLikes = () => {
+        return Observable.create((observer) => {
+            this.socket.on('getLike', (likes) => {
+                observer.next(likes);
+            });
+        });
+    }
+
+    public getSearchResult = () => {
+      return Observable.create((observer) => {
+          this.socket.on('getSearchResult', (data) => {
+            console.log(data)
+              observer.next(data);
+          });
+      });
+  }
+
+    public getComments = () => {
+        return Observable.create((observer) => {
+            this.socket.on('getComment', (comments) => {
+                observer.next(comments);
+            });
+        });
+    }
+
+    public getFollowers = () => {
+        return Observable.create((observer) => {
+            this.socket.on('getFollowers', (followers) => {
+                observer.next(followers);
             });
         });
     }

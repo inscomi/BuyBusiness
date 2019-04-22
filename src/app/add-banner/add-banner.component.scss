@@ -1,0 +1,47 @@
+.add-banner {
+  background: url("/assets/img/drop-down.png");
+  background-repeat: repeat;
+  padding-top: 6rem;
+
+  .card {
+    border-radius: 0px;
+    box-shadow: 2px 2px 10px #b5abab;
+  }
+  .banner-card {
+    .btn-outline-primary {
+      padding: 2px 15px;
+      font-size: 14px;
+    }
+  }
+  .modal-red {
+    background:url("/assets/img/mainbanner-3.png");
+    color:#fff;
+  }
+  .main-head {
+    padding: 10px;
+    margin-bottom: 0px;
+    color: #cd2229;
+    font-size: 25px;
+    text-align: left;
+    font-weight: 600;
+  }
+  .md-btn{
+    padding: 6px 18px !important;
+    width: 136px !important;
+  }
+  .tab-head{
+    background-color: #edf0f7;
+    padding: 12px 0px;
+  }
+  .label-img{
+    width:16px;
+    height:16px;
+  }
+  .pd-head{
+    padding:8px 0px;
+  }
+  .ft-br{
+    border: 1px solid #ddd;
+    box-shadow: 0px 0px 5px 0px #00000054;
+  }
+}

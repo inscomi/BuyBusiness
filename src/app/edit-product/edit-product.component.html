@@ -1,0 +1,102 @@
+<!-- START: FORM DETAILS -->
+<section>
+  <div class="card no-shadow">
+    <h5 Class="main-head text-capitalize">Basic Details</h5>
+    <div class="card-body">
+      <!-- <ul  *ngFor="let country of userdetail.listings">
+        <li>{{country}}</li>
+        </ul> -->
+      <p><span>Highlighted</span> fields are required</p>
+      <form [formGroup]="addForm" #f="ngForm" (ngSubmit)="onSubmit()" class="example-form">
+        <div class="form-group">
+          <h5>Title And Price</h5>
+          <mat-form-field class="example-full-width set-border">
+            <input matInput placeholder="Listing Title" error-set formControlName="productTitle"
+              [ngClass]="{'error-set':addForm.controls.productTitle.invalid && (submitted || addForm.controls.productTitle.touched)}">
+          </mat-form-field>
+          <p class="err"
+            *ngIf="addForm.controls['productTitle'].errors?.required && (submitted || addForm.controls['productTitle'].touched)">
+            Enter
+            Product Name</p>
+        </div>
+        <div class="form-group">
+          <mat-form-field class="example-full-width set-border">
+            <input matInput placeholder="Product Cost" error-set formControlName="productCost"
+              [ngClass]="{'error-set':addForm.controls.productCost.invalid && (submitted || addForm.controls.productCost.touched)}">
+          </mat-form-field>
+          <p class="err"
+            *ngIf="addForm.controls['productCost'].errors?.required && (submitted || addForm.controls['productCost'].touched)">
+            Enter
+            Product Name</p>
+        </div>
+        <h5>Item Condition</h5>
+        <div class="form-group">
+          <mat-radio-button value="1">New</mat-radio-button>
+        </div>
+        <div class="form-group">
+          <mat-radio-button value="2">Old</mat-radio-button>
+        </div>
+        <h5>Meet Up Delivery</h5>
+        <div class="form-group form-custom">
+          <mat-form-field class="example-full-width  ">
+            <mat-select required formControlName="country" (ngModelChange)=getStatesRelatedToCountry($event)>
+              <mat-option value="" disabled="disabled" selected="selected">Please select a Country
+              </mat-option>
+              <mat-option value="{{ country._id }}" *ngFor="let country of countries">
+                {{country.CountryName}}
+              </mat-option>
+            </mat-select>
+            <mat-label><b> Country</b></mat-label>
+          </mat-form-field>
+        </div>
+        <div class="form-group form-custom ">
+          <mat-form-field class="example-full-width ">
+            <mat-select required formControlName="region" (ngModelChange)=getCitiesRelatedToCountry($event)>
+              <mat-option value="" disabled="disabled" selected="selected">Please select a Region
+              </mat-option>
+              <mat-option value="{{ state._id }}" *ngFor="let state of states">{{state.StateName}}
+              </mat-option>
+            </mat-select>
+            <mat-label><b> Region</b></mat-label>
+          </mat-form-field>
+        </div>
+        <div class="form-group form-custom">
+          <mat-form-field class="example-full-width ">
+            <mat-select required formControlName="city">
+              <mat-option value="" disabled="disabled" selected="selected">Please select a City
+              </mat-option>
+              <mat-option value="{{ city._id }}" *ngFor="let city of cities">{{city.CityName}}
+              </mat-option>
+            </mat-select>
+            <mat-label><b> City</b></mat-label>
+          </mat-form-field>
+        </div>
+        <div class="form-group">
+          <mat-form-field class="example-full-width">
+            <input matInput placeholder="Pin Code" error-set formControlName="pincode"
+              [ngClass]="{'error-set':addForm.controls.pincode.invalid && (submitted || addForm.controls.pincode.touched)}">
+          </mat-form-field>
+          <p class="err"
+            *ngIf="addForm.controls['pincode'].errors?.required && (submitted || addForm.controls['pincode'].touched )">
+            Enter Your Pincode</p>
+        </div>
+        <h5><small>Reduce buyer questions by sharing more meet-up and delivery
+            information</small><br>Description</h5>
+        <div class="form-group">
+          <mat-form-field class="example-full-width">
+            <textarea matInput placeholder="Leave a comment" formControlName="productDescription"
+              [ngClass]="{'error-set':addForm.controls.productDescription.invalid && (submitted || addForm.controls.productDescription.touched)}"></textarea>
+          </mat-form-field>
+          <p class="err"
+            *ngIf="addForm.controls['productDescription'].errors?.required && (submitted || addForm.controls['productDescription'].touched )">
+            Enter
+            Product Description</p>
+        </div>
+        <div class="form-group mt-3 text-right">
+          <button class="btn btn-primary set-btn" type="submit">Add List</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+<!-- END: FORM DETAILS -->

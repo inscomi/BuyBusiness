@@ -1,4 +1,9 @@
-<div *ngIf="loading">
+<!-- <div *ngIf="loading">
     <img src="./assets/img/loader-gif.gif" class="loader">
-</div>
-<router-outlet></router-outlet>
+</div> -->
+<app-header></app-header>
+<!-- <go-top-button [animate]="true" [speed]="20" [acceleration]="2" [scrollDistance]="100" [classNames]="'custom-class'">
+</go-top-button> -->
+<router-outlet>
+</router-outlet>
+<app-footer></app-footer>

@@ -1,0 +1,754 @@
+<section class="profile-page">
+  <div class="container">
+    <div class="row set-margin">
+      <div class="col-md-4">
+        <div class="card profile-card">
+          <div class="card-head">
+            <div class="abstract-img">
+              <img class="profile-img" [src]="url" alt="Generic placeholder image">
+            </div>
+          </div>
+
+          <div class="card-body">
+            <div class="col-md-12">
+              <div class="media">
+                <div class="media-body mt-5" *ngIf="userdetail">
+                  <h6 class="card-heading mb-1">Welcome, {{userdetail.userProfile.username}}</h6>
+                  <h6 class="text-primary mb-1">{{userdetail.userProfile.email}} </h6>
+                  <!-- <p class="m-0">Joined 1 month Ago
+                    <i class="fa fa-clock-o" aria-hidden="true"></i>
+                  </p> -->
+                  <ng-template #content3 let-modal>
+                    <button type="button" class="close profile-close" aria-label="Close"
+                      (click)="modal.dismiss('Cross click')">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                    <div class="modal-body p-3">
+                      <h5 class="modal-title mb-3 otp-head"><strong>Please Enter The OTP To Verify Your Account</strong>
+                      </h5>
+                      <p class="otp-para">A OTP has been sent to 8072*****7</p>
+                      <form [formGroup]="EmailVerify" #f="ngForm" (ngSubmit)="onSend()">
+                        <div class="form-group">
+                          <mat-form-field class="example-full-width set-border">
+                            <input matInput placeholder="Listing Title" error-set formControlName="emailverifycode">
+                          </mat-form-field>
+                        </div>
+                        <div class="row">
+                          <div class="form-group text-center col-sm-6">
+                            <button mat-raised-button color="primary" class="pt-1" type="submit">Verify OTP</button>
+                          </div>
+                          <div class="form-group text-center col-sm-6">
+                            <button mat-button>Re Send OTP</button>
+                          </div>
+                        </div>
+
+                      </form>
+                    </div>
+                  </ng-template>
+                  <p class="mt-0 mb-1 text-primary" (click)="modalLogin(content3)">Verified
+                    <!-- <i class="fa fa-envelope" aria-hidden="true" title="verify"></i> -->
+                    <i class="fa fa-envelope pull-right" aria-hidden="true" title="verified"></i>
+                  </p>
+                  <h6 class="text-primary">Update your profile <i class="fa fa-edit faa-pulse animated pull-right"
+                      routerLink="/setting" aria-hidden="true"></i></h6>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card-footer profile-footer" *ngIf="userdetail && userdetail.userProfile.username != loggedInUser">
+            <button type="submit" class="btn btn-primary btn-block btn-profile">Follow</button>
+          </div>
+        </div>
+        <div class="row pt-3 pb-3">
+          <div class="col-sm-12">
+            <div class="card profile-card">
+              <div class="card-body profile-footer">
+                <h6 class="card-heading text-center feedback">Feedback</h6>
+                <div class="show-right2">
+                  <ngb-tabset type="pills">
+                    <ngb-tab>
+                      <ng-template ngbTabTitle>
+                        <!-- (click) = "profileRating('positive',positive)" -->
+                        <p calss="text-muted"><img src="./assets/img/smile.png">&nbsp;<span
+                            class="badge badge-pill badge-primary">9</span></p>Positive
+                      </ng-template>
+                    </ngb-tab>
+                    <ngb-tab>
+                      <ng-template ngbTabTitle>
+                        <p calss="text-muted"><img src="./assets/img/negative.png">
+                        </p>Negative
+                      </ng-template>
+                    </ngb-tab>
+                    <ngb-tab>
+                      <ng-template ngbTabTitle>
+                        <p calss="text-muted"><img src="./assets/img/neutral.png"></p>Neutral
+                      </ng-template>
+                    </ngb-tab>
+                  </ngb-tabset>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card card-main profile-card">
+          <div class="media">
+            <div class="media-body">
+              <div class="card" *ngFor="let comment of comments">
+                <div class="row review-block">
+                  <div class="col-md-4"><img class="img-review" src="./assets/img/user-img.png" alt=""></div>
+                  <div class="col-md-8 mt-3">
+                    <p>{{ comment.comment }}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-8">
+        <div class="card profile-card">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-12">
+                <form class="form-padding">
+                  <div class="form-group">
+                    <label for="exampleFormControlTextarea1" class="card-heading">Example textarea</label>
+                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+          <div class="card-footer">
+            <a href="#">www.buybusiness.com</a>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="show-right">
+              <ngb-tabset type="pills ">
+                <ngb-tab title="No Listing">
+                  <!-- <ngb-tab title="{{userdetail.listings.length}}"> -->
+                  <ng-template ngbTabTitle><span class="tab-title">Listings</span></ng-template>
+                  <ng-template ngbTabContent>
+                    <div class="">
+                      <div class="product-data pl-0">
+                        <div class="container">
+                          <div class="row">
+                            <div class="col-md-4" *ngFor="let title of userdetail.listings">
+                              <div class="card">
+                                <div class="image hovereffectd">
+                                  <img class="card-img-top get-img" src="{{title.coverimage}}" alt="Card image cap"
+                                    routerLink="/category-detail/{{title.productPostingID}}">
+                                  <!-- <div class="set-pos overlayd">
+                                    <h6 class="content">
+                                      <i class="fa fa-map-marker mr-2" aria-hidden="true"></i>1681 Lake Shore Boulevard
+                                      East</h6>
+                                    <h6 class="content mt-2">
+                                      <i class="fa fa-phone mr-2" aria-hidden="true"></i>+81 989514785
+                                    </h6>
+                                  </div> -->
+                                </div>
+                                <div class="user-img">
+                                  <img class="item">
+                                </div>
+                                <div class="card-body">
+                                  <ul class="list-inline set-inline mb-0">
+                                    <h6 class="heading">{{title.productTitle}}</h6>
+                                    <h6 class="make m-0"> Benz</h6>
+                                    <h6 class="make m-0"><i class="fa fa-usd mr-1" aria-hidden="true"></i>25,600</h6>
+                                    <p class="description">{{title.productDescription}}</p>
+                                    <hr class="mt-0 mb-0">
+                                    <div class="p-1">
+                                      <button type="button" class="btn btn-custom"><i class="fa fa-heart"
+                                          aria-hidden="true">&nbsp;</i>{{title.productLikes}}</button>
+                                      <button type="button" class="btn btn-rite btn-custom"><i class="fa fa-eye"
+                                          aria-hidden="true">&nbsp;</i>20</button>
+                                    </div>
+                                    <hr class="mt-0 mb-0">
+
+                                    <button type="button" class="btn btn-custom text-left"
+                                      (click)="modalPromote(promote,title.coverimage)">Promote</button>
+
+                                    <!-- START: COMMON MODAL -->
+                                    <ng-template #promote let-modal id="promote-modal">
+
+                                      <!-- START: LISTING HIGHLIGHTS-->
+                                      <div class="modal-header modal-red" *ngIf="currentPosition == 1">
+                                        <img src="{{productImage}}" class="modal-img">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"
+                                          (click)="modal.dismiss('Cross click')">
+                                          <span aria-hidden="true">&times;</span>
+                                        </button>
+                                      </div>
+                                      <div class="modal-body" id="md-body" *ngIf="currentPosition == 1">
+                                        <h3 class="h3-ctm text-center mt-2">Power Up Your Listing</h3>
+                                        <h5 class="h5-ctm text-center">Reach more buyers quickly</h5>
+                                        <div class="md-top">
+                                          <p class="text-uppercase p-3 mb-0">pin to top</p>
+                                        </div>
+
+                                        <div class="row p-3">
+                                          <div class="col-md-8 col-6">
+                                            <h3 class="h3-title">Spotlight <i class="fa fa-angle-double-up"></i></h3>
+                                            <h5 class="h5-desc">Up to 500 more views</h5>
+                                            <p class="p-desc mb-0">Pay only when users view your item. <span
+                                                class="text-primary">Learn more</span></p>
+                                          </div>
+                                          <div class="col-md-4 col-6">
+                                            <button type="button" class="btn md-btn btn-primary"
+                                              (click)="nextPage(currentPosition,'Spotlight')">Buy <img
+                                                src="./assets/img/coins.png" class="md-img"></button>
+                                            <button type="button" class="btn md-btn1 mt-2 ml-2 btn-primary"><i
+                                                class="fa fa-thumbs-up"></i> Recommended</button>
+                                          </div>
+                                        </div>
+
+                                        <div class="md-top">
+                                          <p class="text-uppercase p-3 mb-0">quick boost</p>
+                                        </div>
+                                        <div class="row p-3">
+                                          <div class="col-md-8 col-6">
+                                            <h3 class="h3-title">Highlight <i class="fa fa-bolt"></i></h3>
+                                            <h5 class="h5-desc">Up to 4x more views</h5>
+                                            <p class="p-desc mb-0">Highlight your product. <span
+                                                class="text-primary">Learn more</span></p>
+                                          </div>
+                                          <div class="col-md-4 col-6">
+                                            <button type="button" class="btn md-btn btn-primary"
+                                              (click)="nextPage(currentPosition,'Highlight')">Buy <img
+                                                src="./assets/img/coins.png" class="md-img"></button>
+                                          </div>
+                                        </div>
+                                          <div class="row p-3">
+                                            <div class="col-md-8 col-6">
+                                              <h3 class="h3-title">3-Day Bump <i class="fa fa-bolt"></i></h3>
+                                              <h5 class="h5-desc">Up to 2x more views</h5>
+                                              <p class="p-desc mb-0">Bump once a day, for 3 days. <span
+                                                  class="text-primary">Learn more</span></p>
+                                      </div>
+                                            <div class="col-md-4 col-6">
+                                              <button type="button" class="btn md-btn btn-primary" (click)="bumpThisProduct(title,3,25)" [disabled]="userCoins < 25">25 <img
+                                                  src="./assets/img/coins.png" class="md-img"></button>
+                                            </div>
+                                          </div>
+                                          <div class="row p-3">
+                                          <div class="col-md-8 col-6">
+                                            <h3 class="h3-title">1-Day Bump <i class="fa fa-bolt"></i></h3>
+                                            <h5 class="h5-desc">Up to 1.4x more views</h5>
+                                            <p class="p-desc mb-0">Bump once a day for 1 day <span
+                                                class="text-primary">Learn more</span></p>
+                                          </div>
+                                          <div class="col-md-4 col-6">
+                                            <!-- (click)="nextPage(currentPosition,'Highlight')" -->
+                                            <button type="button" class="btn md-btn btn-primary"
+                                              (click)="bumpThisProduct(title,1,15)" [disabled]="userCoins < 15">15 <img
+                                                src="./assets/img/coins.png" class="md-img"></button>
+                                          </div>
+                                        </div>
+                                        <!-- *ngIf="title.productBump" -->
+                                        <div class="row p-3">
+                                          <div class="col-md-8 col-6">
+                                            <h3 class="h3-title">Urgent Ad <i class="fa fa-bolt"></i></h3>
+                                            <h5 class="h5-desc">Up to 4x more views</h5>
+                                            <p class="p-desc mb-0">Extend your bump for 2 more days <span
+                                                class="text-primary">Learn more</span></p>
+                                          </div>
+                                          <div class="col-md-4 col-6">
+                                            <!-- (click)="nextPage(currentPosition,'Highlight')" -->
+                                            <button type="button" class="btn md-btn btn-primary"
+                                              (click)="bumpThisProduct(title,2,15)" [disabled]="userCoins < 15">15 <img
+                                                src="./assets/img/coins.png" class="md-img"></button>
+                                          </div>
+                                        </div>
+                                        </div>
+                                      <div class="modal-footer text-center" *ngIf="currentPosition == 1">
+                                        <p>By purchasing any of the above, you accept our <span
+                                            class="text-primary">Terms of Service.</span> Prices may change based on
+                                          buyer traffic.</p>
+                                      </div>
+                                      <!-- END: LISTING HIGHLIGHTS-->
+
+                                      <!-- START:SPOTLIGHTS -->
+                                      <div class="modal-header modal-red" *ngIf="currentPosition == 2">
+                                        <div class="row">
+                                          <div class="col-md-6 col-6 col-sm-6 pb-3">
+                                            <button type="button" class="close pull-left" data-dismiss="modal"
+                                              aria-label="Close" (click)="previousPage(currentPosition)">
+                                              <span aria-hidden="true"><i class="fa fa-chevron-left"></i></span>
+                                            </button>
+                                          </div>
+                                          <div class="col-md-6 col-6 col-sm-6 pb-3">
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"
+                                              (click)="modal.dismiss('Cross click')">
+                                              <span aria-hidden="true">&times;</span>
+                                            </button>
+                                          </div>
+                                        <div class="col-md-8 col-sm-6 col-6" *ngIf="selectedPromotion == 'Spotlight'">
+                                            <h3 class="h3-ctm mb-0">Spotlight</h3>
+                                            <p class="p-ctm mb-0">Improve chances of selling by showing your listing to
+                                              the
+                                              right people in the right places.</p>
+                                            <p class="p-ctm ul-text">know more</p>
+                                          </div>
+                                        <div class="col-md-8 col-sm-6 col-6" *ngIf="selectedPromotion == 'Highlight'">
+                                          <h3 class="h3-ctm mb-0">Highlight</h3>
+                                          <p class="p-ctm mb-0">Improve chances of selling by showing your listing to the
+                                            right people in the right places.</p>
+                                          <p class="p-ctm ul-text">know more</p>
+                                        </div>
+                                        <div class="col-md-8 col-sm-6 col-6" *ngIf="selectedPromotion == 'bump'">
+                                          <h3 class="h3-ctm mb-0">Bump 3 days</h3>
+                                          <p class="p-ctm mb-0">Improve chances of selling by showing your listing to the
+                                            right people in the right places.</p>
+                                          <p class="p-ctm ul-text">know more</p>
+                                        </div>
+                                          <div class="col-md-4 col-sm-6 col-6">
+                                            <img src="./assets/img/head.PNG">
+                                          </div>
+                                        </div>
+
+                                      </div>
+                                      <div class="modal-body" id="md-body" *ngIf="currentPosition == 2">
+                                        <p class="p-3 mb-0 sl-txt"><i class="fa fa-lightbulb-o text-primary"></i> 29
+                                          Spotlight ads running in this category.
+                                          Increase your priority to stand out.</p>
+                                        <div class="col-md-12">
+                                          <div class="show-right-md">
+                                            <ngb-tabset type="pills">
+                                              <ngb-tab title="Usual">
+                                                <ng-template ngbTabTitle><span class="tab-title1">Priority</span>
+                                                </ng-template>
+                                                <ng-template ngbTabContent>
+                                                  <div class="row tab-head mt-3">
+                                                    <div class="text-uppercase col-md-6 col-6 tab-left-title">select daily
+                                                      budget</div>
+                                                    <div class="text-uppercase col-md-6 col-6 tab-left-title">current balance
+                                                      :
+                                                      {{ userCoins }} <img src="./assets/img/coins.png"
+                                                        class="label-img"></div>
+                                                  </div>
+                                                    <span *ngIf="selectedPromotion != 'bump'">
+                                                    <div class="row tab-desc" *ngFor="let coinPromotion of validCoinPromotions">
+                                                    <div class="col-md-5 col-5">
+                                                      <div>
+                                                        <div class="radio">
+                                                          <label>
+                                                            <!--<input type="radio" class="mr-2" name="optradio" checked>-->
+                                                            {{ coinPromotion.noOfCoins }} <img
+                                                              src="./assets/img/coins.png" class="label-img">
+                                                            <span class="sl-txt"> for {{ coinPromotion.expiryDay }} days ({{ coinPromotion.numberOfCoupons }} views)</span>
+                                                          </label>
+                                                        </div>
+                                                      </div>
+
+                                                    </div>
+                                                    <div class="col-md-2 col-2">
+                                                      <div>&#8594;</div>
+                                                    </div>
+                                                    <div class="col-md-5 col-5">
+                                                      <button type="button" class="btn md-btn2 btn-primary"
+                                                        (click)="promoteThisProduct(selectedPromotion,title,coinPromotion)"
+                                                        [disabled]="userCoins < coinPromotion.noOfCoins">Buy <img
+                                                          src="./assets/img/coins.png" class="md-img"></button>
+                                                      <!-- <div class="ml-5 sl-txt">40 <i class="fa fa-hand-pointer-o"
+                                                            aria-hidden="true"></i>
+                                                          clicks daily</div> -->
+                                                    </div>
+                                                  </div>
+</span>
+<span *ngIf="selectedPromotion == 'bump'">
+<div class="row tab-desc">
+  <div class="col-md-5 col-5">
+    <div>
+      <div class="radio">
+        <label><!--<input type="radio" class="mr-2" name="optradio" checked>-->
+            100 <img src="./assets/img/coins.png"
+            class="label-img">
+            <!-- <span class="sl-txt"> spend daily</span> -->
+          </label>
+      </div>
+    </div>
+
+  </div>
+  <div class="col-md-2 col-2">
+    <div>&#8594;</div>
+  </div>
+  <div class="col-md-5 col-5">
+    <button type="button" class="btn md-btn2 btn-primary" (click)="promoteThisProduct(selectedPromotion,title,100)" [disabled]="userCoins < 100">Buy <img
+        src="./assets/img/coins.png" class="md-img"></button>
+    <!-- <div class="ml-5 sl-txt">40 <i class="fa fa-hand-pointer-o"
+        aria-hidden="true"></i>
+      clicks daily</div> -->
+  </div>
+</div>
+</span>
+
+                                                  <!-- <div class="row tab-desc">
+                                                      <div class="col-md-5">
+                                                        <div>
+                                                          <div class="radio">
+                                                            <label><input type="radio" class="mr-2" name="optradio"
+                                                                checked>360 <img src="./assets/img/coins.png"
+                                                                class="label-img"> <span class="sl-txt"> spend
+                                                                daily</span></label>
+                                                          </div>
+                                                        </div>
+
+                                                      </div>
+                                                      <div class="col-md-2">
+                                                        <div>&#8594;</div>
+                                                      </div>
+                                                      <div class="col-md-5">
+                                                        <div class="ml-5 sl-txt">40 <i class="fa fa-hand-pointer-o"
+                                                            aria-hidden="true"></i>
+                                                          clicks daily</div>
+                                                      </div>
+                                                    </div>
+                                                    <div class="row tab-desc">
+                                                      <div class="col-md-5">
+                                                        <div>
+                                                          <div class="radio">
+                                                            <label><input type="radio" class="mr-2" name="optradio"
+                                                                checked>360 <img src="./assets/img/coins.png"
+                                                                class="label-img"> <span class="sl-txt"> spend
+                                                                daily</span></label>
+                                                          </div>
+                                                        </div>
+
+                                                      </div>
+                                                      <div class="col-md-2">
+                                                        <div>&#8594;</div>
+                                                      </div>
+                                                      <div class="col-md-5">
+                                                        <div class="ml-5 sl-txt">40 <i class="fa fa-hand-pointer-o"
+                                                            aria-hidden="true"></i>
+                                                          clicks daily</div>
+                                                      </div>
+                                                    </div> -->
+                                                  <div class="row tab-head1">
+
+                                                  </div>
+                                                  <!-- <div class="row">
+                                                      <p class="text-primary p-cstm mb-0">Select keywords to target</p>
+                                                    </div> -->
+                                                  <!-- <div class="row text-uppercase tab-head2 sl-txt">
+                                                      set duration
+                                                    </div>
+                                                    <div class="row">
+                                                      <div class="col-md-6 mt-2">Promote listing for the next</div>
+                                                      <div class="col-md-6 mt-2">
+                                                        <div class="form-group">
+                                                          <select class="form-control form-ctm" id="sel1">
+                                                            <option>1 day</option>
+                                                            <option>2 days</option>
+                                                            <option>3 days</option>
+                                                            <option>4 days</option>
+                                                          </select>
+                                                        </div>
+                                                      </div>
+                                                    </div> -->
+                                                  <div class="row foot-s">
+                                                    <div class="col-md-12 mb-4 mt-2">
+                                                      <span class="alert-primary alert-text"><i
+                                                          class="fa fa-warning text-primary" aria-hidden="true"></i>You
+                                                        need 2,939 more coins. Continue buying coins to run
+                                                        Spotlight.</span>
+                                                    </div>
+                                                    <div class="col-md-6 col-6">
+                                                      <p class="mb-0"><span class="coin-text">{{ userCoins }}</span>
+                                                        <img src="./assets/img/coins.png" class="label-img ml-2">
+                                                        <span class="coin-desc ml-2 sl-txt">(~S$25)</span>
+                                                      </p>
+                                                      <p class="coin-desc">280 total clicks for 7 days.</p>
+                                                    </div>
+                                                    <div class="col-md-6 col-6">
+                                                      <button type="button" class="btn btn-primary pull-right"
+                                                        (click)="nextPage(currentPosition,'')">Buy more
+                                                        Coins</button>
+                                                    </div>
+
+                                                  </div>
+                                                </ng-template>
+                                              </ngb-tab>
+                                            </ngb-tabset>
+
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <!-- END:SPOTLIGHTS -->
+
+                                      <!-- START: BUY COINS -->
+                                      <div class="modal-header" *ngIf="currentPosition == 3">
+                                        <h4 class="modal-title text-center">Get More Coins</h4>
+                                        <button type="button" class="close text-secondary" data-dismiss="modal"
+                                          aria-label="Close" (click)="modal.dismiss('Cross click')">
+                                          <span aria-hidden="true">&times;</span>
+                                        </button>
+                                      </div>
+                                      <div class="modal-body" *ngIf="currentPosition == 3">
+                                        <div class="scroll-type">
+                                          <h5 class="mb-2">Save more with bigger bundles!</h5>
+                                          <div class="media media-coin mb-3" *ngFor="let coinplan of coinplans">
+                                            <div class="media-left">
+                                              <h3 class="coin-h">{{ coinplan.noOfCoins }}</h3>
+                                            </div>
+                                            <div class="media-body">
+                                              <img src="assets/img/coins.png" class="ml-2 coin-img">
+                                            </div>
+                                            <div class="media-right ml-2">
+                                              <button class="btn btn-coin btn-primary"
+                                                (click)="buyCoin(coinplan._id)">${{ coinplan.amount }}</button>
+                                            </div>
+                                          </div>
+                                          <p>By purchasing any of the above coin plans, you accept our Terms of Service.
+                                          </p>
+                                        </div>
+                                      </div>
+                                      <!-- END: BUY COINS -->
+
+                                      <!-- START:SEARCH KEYWORDS-->
+                                      <div class="modal-header" *ngIf="currentPosition == 4">
+                                        <div class="align-middle">Select keywords to target</div>
+                                        <button type="button" class="close text-secondary" data-dismiss="modal"
+                                          aria-label="Close" (click)="modal.dismiss('Cross click')">
+                                          <span aria-hidden="true">&times;</span>
+                                        </button>
+                                      </div>
+                                      <div class="modal-body" *ngIf="currentPosition == 4">
+                                        <div class="input-group mb-3">
+                                          <input type="text" class="form-control" placeholder="">
+                                          <div class="input-group-append">
+                                            <span class="input-group-text txt-grp" id="basic-addon2"><i
+                                                class="fa fa-search" aria-hidden="true"></i></span>
+                                          </div>
+
+                                        </div>
+                                        <div>Available Keywords</div>
+                                        <div class="list-group">
+                                          <a class="list-group-item list-group-item-action active">
+                                            Spotlight
+                                          </a>
+                                          <a class="list-group-item list-group-item-action">Agriculture Business</a>
+                                          <a class="list-group-item list-group-item-action">Business Trends</a>
+                                          <a class="list-group-item list-group-item-action">Franchise Sale</a>
+                                          <a class="list-group-item list-group-item-action">Fresh Finding</a>
+                                        </div>
+                                      </div>
+                                      <div class="foot-s" *ngIf="currentPosition == 4">
+                                        <div class="col-md-12 mb-4 mt-2">
+                                          <span class="alert-primary alert-text">You need 2,939 more coins. Continue
+                                            buying coins to run Spotlight.</span>
+                                        </div>
+                                        <div class="row md-keywords">
+                                          <div class="col-md-6">
+                                            <p class="mb-0"><span class="coin-text">2,520</span> <img
+                                                src="./assets/img/coins.png" class="label-img ml-2"> <span
+                                                class="coin-desc ml-2">(~S$25)</span></p>
+                                            <p class="coin-desc">280 total clicks for 7 days.</p>
+                                          </div>
+                                          <div class="col-md-6">
+                                            <button type="button" class="btn btn-primary pull-right">Buy more
+                                              Coins</button>
+                                          </div>
+                                        </div>
+
+                                      </div>
+                                      <!-- END:SEARCH KEYWORDS -->
+
+                                      <!-- START:PAYMENT MODAL -->
+                                      <div class="modal-header" *ngIf="currentPosition == 5">
+                                        <h4></h4>
+                                        <button type="button" class="close text-secondary" data-dismiss="modal"
+                                          aria-label="Close" (click)="modal.dismiss('Cross click')">
+                                          <span aria-hidden="true">&times;</span>
+                                        </button>
+                                      </div>
+                                      <div class="modal-body" *ngIf="currentPosition == 5">
+                                        <h4 class="text-center">Enter Payment Details</h4>
+                                        <div class="media media-coin mb-3">
+                                          <div class="media-left">
+                                            <h3 class="coin-h">1,119 <span
+                                                class="badge badge-ctm badge-danger ml-2">save 8%</span></h3>
+                                          </div>
+                                          <div class="media-body">
+                                            <img src="assets/img/coins.png" class="ml-2">
+                                          </div>
+                                          <div class="media-right">
+                                            <span class="text-primary">Change</span>
+                                          </div>
+                                        </div>
+                                        <h6 class="sl-txt text-center mt-4">Secure credit card payment</h6>
+                                        <div class="pm-img text-center mb-4">
+                                          <img src="assets/img/visa.png" class="mr-2">
+                                          <img src="assets/img/master.png" class="mr-2">
+                                          <img src="assets/img/ae.png" class="mr-2">
+                                        </div>
+                                        <form>
+                                          <div class="form-group row">
+                                            <label for="email" class="col-sm-2 col-form-label label-mail">Email</label>
+                                            <div class="col-sm-10">
+                                              <input type="text" class="form-control" placeholder="Your Email">
+                                            </div>
+                                          </div>
+                                          <div class="form-group row">
+                                            <label for="card number"
+                                              class="col-sm-2 col-form-label label-mail">Card</label>
+                                            <div class="col-sm-4">
+                                              <input type="number" class="form-control" placeholder="Card Number">
+                                            </div>
+                                            <div class="col-sm-3">
+                                              <input type="number" class="form-control" placeholder="MM/YY">
+                                            </div>
+                                            <div class="col-sm-3">
+                                              <input type="number" class="form-control" placeholder="CVC">
+                                            </div>
+                                          </div>
+                                          <div class="form-group">
+                                            <button class="btn btn-primary btn-sm btn-block set-primary"
+                                              type="submit">Pay S$632.23</button>
+                                          </div>
+                                          <h6 class="text-center text-primary">Pay using Bank Transfer instead</h6>
+                                        </form>
+                                      </div>
+                                      <!-- END:PAYMENT MODAL -->
+
+                                    </ng-template>
+                                    <!-- END:COMMON MODAL -->
+
+
+                                    <div class="btn-group ml-2">
+                                      <button type="button" class="btn btn-edit mr-3" mat-raised-button
+                                        (click)="openBottomSheet(title.productPostingID)">edit <i class="fa fa-edit"
+                                          aria-hidden="true"></i></button>
+                                      <button type="button" class="btn btn-edit"
+                                        (click)="modalDelete(contentdelete)">delete
+                                        <i class="fa fa-trash" aria-hidden="true"></i></button>
+                                    </div>
+                                    <!-- DELETE:PRODUCT -->
+                                    <ng-template #contentdelete let-c="close" let-d="dismiss">
+                                      <div class="modal-body">
+                                        Are you sure want to delete your product
+                                      </div>
+                                      <div class="modal-footer">
+                                         <button type="button" class="btn btn-edit btn-danger" (click)="deletePost(listings)">Yes</button>
+                                         <button type="button" class="btn btn-edit btn-info">No</button>
+                                      </div>
+                                    </ng-template>
+                                    <!-- DELETE:PRODUCT -->
+                                  </ul>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </ng-template>
+                </ngb-tab>
+                <ngb-tab title="{{ followersLength }}">
+                  <ng-template ngbTabTitle><span class="tab-title">Followers</span></ng-template>
+                  <ng-template ngbTabContent>
+                    <div class="follower-detail">
+                      <div class="container">
+                        <div class="row">
+                          <div class="col-md-4" *ngFor="let follower of followers">
+                            <div class="card card-follower">
+                              <div class="card-head follower-head">
+                                <img [src]="follower.images[0].imageName" class="img-follow" *ngIf="follower.images">
+                                <img src="./assets/img/user-img.png" class="img-follow" *ngIf="!follower.images">
+                              </div>
+                              <div class="card-body text-center follower-body">
+                                <h6>{{ follower.username }}</h6>
+                                <p>583 Followers</p>
+                                <button type="button" class="btn btn-outline-dark btn-sm btn-block"
+                                  routerLink="/user-profile/{{follower.username}}">View Profile</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </ng-template>
+                </ngb-tab>
+                <ngb-tab title="{{ followingLength }}">
+                  <ng-template ngbTabTitle><span class="tab-title">Following</span></ng-template>
+                  <ng-template ngbTabContent>
+                    <div class="follower-detail">
+                      <div class="container">
+                        <div class="row">
+                          <div class="col-md-4" *ngFor="let following of followings">
+                            <div class="card card-follower">
+                              <div class="card-head follower-head">
+                                <img src="./assets/img/user-img.png" class="img-follow" *ngIf="!following.images">
+                                <img [src]="following.images[0].imageName" class="img-follow" *ngIf="following.images">
+                              </div>
+                              <div class="card-body text-center follower-body">
+                                <h6>{{ following.username }}</h6>
+                                <p>583 Followers</p>
+                                <button type="button" class="btn btn-outline-dark btn-sm btn-block"
+                                  routerLink="/user-profile/{{following.username}}">View Profile</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </ng-template>
+                </ngb-tab>
+
+                <ngb-tab title="{{ userCoins }}">
+                  <ng-template ngbTabTitle><span class="tab-title">Coins</span></ng-template>
+                  <ng-template ngbTabContent>
+                    <div class="row">
+                      <div class="container">
+                        <div class="col-md-12 tab-content">
+                          <h6 class="pt-3 float-right text-primary">what are coins?</h6>
+                          <div class="text-center pt-5">
+                            <h2 class="text-primary">Balance</h2>
+                            <h4>{{ userCoins }}<img src="./assets/img/coins.png" class="coin-img"></h4>
+                            <!-- <button class="btn btn-default">657 coins will expire on march 30, 2019</button><br> -->
+                            <button class="btn btn-primary btn-padding"
+                              (click)="CoinModal(content,userdetail.userProfile._id)">Buy More Coins</button>
+                          </div>
+                          <!--  -->
+                          <ng-template #content let-c="close" let-d="dismiss">
+                            <div class="modal-header">
+                              <h4 class="modal-title text-center">Get More Coins</h4>
+                              <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
+                            </div>
+                            <div class="modal-body">
+                              <div class="scroll-type">
+                                <h5 class="mb-2">Save more with bigger bundles!</h5>
+                                <div class="media media-coin mb-3" *ngFor="let coinplan of coinplans">
+                                  <div class="media-left">
+                                    <h3 class="coin-h">{{ coinplan.noOfCoins }} </h3>
+                                  </div>
+                                  <div class="media-body">
+                                    <img src="assets/img/coins.png" class="ml-2 coin-img">
+                                  </div>
+                                  <div class="media-right">
+                                    <button class="btn btn-coin btn-primary"
+                                      (click)="buyCoin(coinplan._id)">${{ coinplan.amount }}</button>
+                                  </div>
+                                </div>
+                                <p>By purchasing any of the above coin plans, you accept our Terms of Service.</p>
+                              </div>
+                            </div>
+                          </ng-template>
+                          <!--  -->
+                        </div>
+                      </div>
+                    </div>
+                  </ng-template>
+                </ngb-tab>
+              </ngb-tabset>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

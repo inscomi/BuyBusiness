@@ -1,0 +1,296 @@
+<section class="userprofile-page">
+  <div class="container">
+    <div class="row set-margin">
+      <div class="col-md-4">
+        <div class="card profile-card">
+          <div class="card-head">
+            <div class="abstract-img">
+              <img class="profile-img" [src]="url" alt="Generic placeholder image">
+            </div>
+          </div>
+
+          <div class="card-body">
+            <div class="col-md-12">
+              <div class="media">
+                <div class="media-body mt-5">
+                  <h6 class="card-heading mb-1">{{userdetail.userProfile.username}}</h6>
+                  <h6 class="text-primary mb-1">{{userdetail.userProfile.email}} </h6>
+                  <!-- <p class="m-0">Joined 1 month Ago
+                    <i class="fa fa-clock-o" aria-hidden="true"></i>
+                  </p> -->
+                  <p class="mt-0 mb-1 text-primary">Verified
+                    <!-- <i class="fa fa-envelope" aria-hidden="true" title="verify"></i> -->
+                    <i class="fa fa-envelope pull-right" aria-hidden="true" title="verified"></i>
+                  </p>
+                  <!-- <h6 class="text-primary">Update your profile <i class="fa fa-edit faa-pulse animated pull-right"
+                      routerLink="/setting" aria-hidden="true"></i></h6> -->
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card-footer profile-footer" *ngIf="userdetail.userProfile.username != loggedInUser">
+            <button type="button" class="btn btn-primary btn-block btn-profile" (click)="follow()" *ngIf="!followed">Follow</button>
+            <button type="button" class="btn btn-primary btn-block btn-profile" *ngIf="followed">Followed</button>
+          </div>
+        </div>
+        <div class="row pt-3 pb-3">
+          <div class="col-sm-12">
+            <div class="card profile-card">
+              <div class="card-body profile-footer">
+                <h6 class="card-heading text-center feedback">Feedback</h6>
+                <div class="show-right2">
+                  <ngb-tabset type="pills">
+                    <ngb-tab>
+                      <ng-template ngbTabTitle>
+                        <!-- (click) = "profileRating('positive',positive)" -->
+                        <p calss="text-muted"><img src="./assets/img/smile.png">&nbsp;<span
+                            class="badge badge-pill badge-primary">9</span></p>Positive
+                      </ng-template>
+                    </ngb-tab>
+                    <ngb-tab>
+                      <ng-template ngbTabTitle>
+                        <p calss="text-muted"><img src="./assets/img/negative.png">
+                        </p>Negative
+                      </ng-template>
+                    </ngb-tab>
+                    <ngb-tab>
+                      <ng-template ngbTabTitle>
+                        <p calss="text-muted"><img src="./assets/img/neutral.png"></p>Neutral
+                      </ng-template>
+                    </ngb-tab>
+                  </ngb-tabset>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card card-main profile-card mb-4">
+          <div class="media">
+            <div class="media-body">
+              <div class="card">
+                <div class="row review-block">
+                  <div class="col-md-4"><img class="img-review" src="./assets/img/user-img.png" alt=""></div>
+                  <div class="col-md-8">
+                    <p>This allows customers to fit either short, mid-length or long trays, depending on whether you</p>
+                  </div>
+                </div>
+              </div>
+              <div class="card">
+                <div class="row review-block">
+                  <div class="col-md-4"><img class="img-review" src="./assets/img/user-img.png" alt=""></div>
+                  <div class="col-md-8">
+                    <p>This allows customers to fit either short, mid-length or long trays, depending on whether you</p>
+                  </div>
+                </div>
+              </div>
+              <div class="card">
+                <div class="row review-block">
+                  <div class="col-md-4"><img class="img-review" src="./assets/img/user-img.png" alt=""></div>
+                  <div class="col-md-8">
+                    <p>This allows customers to fit either short, mid-length or long trays, depending on whether you</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-8">
+        <div class="card profile-card">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-12">
+                <form class="form-padding">
+                  <div class="form-group">
+                    <label for="exampleFormControlTextarea1" class="card-heading">Example textarea</label>
+                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+          <div class="card-footer">
+            <a href="#">www.buybusiness.com</a>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="show-right">
+              <ngb-tabset type="pills ">
+                <ngb-tab title="No Listing">
+                  <!-- <ngb-tab title="{{userdetail.listings.length}}"> -->
+                  <ng-template ngbTabTitle><span class="tab-title">Listings</span></ng-template>
+                  <ng-template ngbTabContent>
+                    <div class="">
+                      <div class="product-data pl-0">
+                        <div class="container">
+                          <div class="row">
+                            <div class="col-md-4" *ngFor="let title of userdetail.listings">
+                              <div class="card">
+                                <div class="image hovereffectd">
+                                  <img class="card-img-top get-img" src="{{title.coverimage}}" alt="Card image cap"
+                                    routerLink="/category-detail/{{title.productPostingID}}">
+                                  <!-- <div class="set-pos overlayd">
+                                    <h6 class="content">
+                                      <i class="fa fa-map-marker mr-2" aria-hidden="true"></i>1681 Lake Shore Boulevard
+                                      East</h6>
+                                    <h6 class="content mt-2">
+                                      <i class="fa fa-phone mr-2" aria-hidden="true"></i>+81 989514785
+                                    </h6>
+                                  </div> -->
+                                </div>
+                                <div class="user-img">
+                                  <img class="item">
+                                </div>
+                                <div class="card-body">
+                                  <ul class="list-inline set-inline mb-0">
+                                    <h6 class="heading">{{title.productTitle}}</h6>
+                                    <h6 class="make m-0"> Benz</h6>
+                                    <h6 class="make m-0"><i class="fa fa-usd mr-1" aria-hidden="true"></i>25,600</h6>
+                                    <p class="description">{{title.productDescription}}</p>
+                                    <hr class="mt-0 mb-0">
+                                    <div class="p-1">
+                                      <button type="button" class="btn btn-custom"><i class="fa fa-heart"
+                                          aria-hidden="true">&nbsp;</i>{{title.productLikes}}</button>
+                                      <button type="button" class="btn btn-rite btn-custom"><i class="fa fa-search"
+                                          aria-hidden="true">&nbsp;</i>20</button>
+                                    </div>
+                                    <hr class="mt-0 mb-0">
+                                    <div class="btn-group ml-4">
+                                      <!-- <button type="button" class="btn btn-edit mr-3">edit <i class="fa fa-edit"
+                                          aria-hidden="true"></i></button>
+                                      <button type="button" class="btn btn-edit" (click)="modalDelete(content)">delete
+                                        <i class="fa fa-trash" aria-hidden="true"></i></button> -->
+                                      <!-- <ng-template #content let-modal> -->
+                                        <!-- <button type="button" class="close profile-close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                                            <span aria-hidden="true">&times;</span>
+                                          </button> -->
+                                        <!-- <div class="modal-header">
+                                          <h5 class="modal-title"><strong>Are you sure, you want to delete?</strong>
+                                          </h5>
+                                          <button type="button" class="close" data-dismiss="modal" aria-label="Close"
+                                            (click)="modal.dismiss('Cross click')">
+                                            <span aria-hidden="true">&times;</span>
+                                          </button>
+                                        </div>
+                                        <div class="modal-footer text-center">
+                                          <button type="button" class="btn btn-default">No</button>
+                                          <button type="button" class="btn btn-danger">Yes</button>
+                                        </div>
+                                      </ng-template> -->
+                                    </div>
+
+                                  </ul>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </ng-template>
+                </ngb-tab>
+                <ngb-tab title="{{ followersLength }}">
+                  <ng-template ngbTabTitle><span class="tab-title">Followers</span></ng-template>
+                  <ng-template ngbTabContent>
+                    <div class="follower-detail">
+                      <div class="container">
+                        <div class="row">
+                          <div class="col-md-4" *ngFor="let follower of followers">
+                            <div class="card card-follower">
+                              <div class="card-head follower-head">
+                                <img [src]="follower.images[0].imageName" class="img-follow"
+                                  *ngIf="follower.images">
+                                <img src="./assets/img/user-img.png" class="img-follow" *ngIf="!follower.images">
+                              </div>
+                              <div class="card-body text-center follower-body">
+                                <h6>{{ follower.username }}</h6>
+                                <p>583 Followers</p>
+                                <button type="button" class="btn btn-outline-dark btn-sm btn-block" routerLink="/user-profile/{{follower.username}}">View Profile</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </ng-template>
+                </ngb-tab>
+                <ngb-tab title="{{ followingLength }}">
+                  <ng-template ngbTabTitle><span class="tab-title">Following</span></ng-template>
+                  <ng-template ngbTabContent>
+                    <div class="follower-detail">
+                      <div class="container">
+                        <div class="row">
+                          <div class="col-md-4" *ngFor="let following of followings">
+                            <div class="card card-follower">
+                              <div class="card-head follower-head">
+                                <img [src]="following.images[0].imageName" class="img-follow"
+                                  *ngIf="following.images">
+                                <img src="./assets/img/user-img.png" class="img-follow" *ngIf="!following.images">
+                              </div>
+                              <div class="card-body text-center follower-body">
+                                <h6>{{ following.username }}</h6>
+                                <p>583 Followers</p>
+                                <button type="button" class="btn btn-outline-dark btn-sm btn-block" routerLink="/user-profile/{{following.username}}">View Profile</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </ng-template>
+                </ngb-tab>
+                <!-- <ngb-tab title="{{ userCoins }}">
+                  <ng-template ngbTabTitle><span class="tab-title">Coins</span></ng-template>
+                  <ng-template ngbTabContent>
+                    <div class="row">
+                      <div class="container">
+                        <div class="col-md-12 tab-content">
+                          <h6 class="pt-3 float-right text-primary">what are coins?</h6>
+                          <div class="text-center pt-5">
+                            <h2 class="text-primary">Balance</h2>
+                            <h4>{{ userCoins }}<img src="./assets/img/coins.png" class="coin-img"></h4>
+                            <button class="btn btn-primary btn-padding"
+                              (click)="CoinModal(content,userdetail.userProfile._id)">Buy More Coins</button>
+                          </div>
+                          <ng-template #content let-c="close" let-d="dismiss">
+                            <div class="modal-header">
+                              <h4 class="modal-title text-center">Get More Coins</h4>
+                              <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
+                            </div>
+                            <div class="modal-body">
+                              <div class="scroll-type">
+                                <h5 class="mb-2">Save more with bigger bundles!</h5>
+                                <div class="media media-coin mb-3" *ngFor="let coinplan of coinplans">
+                                  <div class="media-left">
+                                    <h3 class="coin-h">{{ coinplan.noOfCoins }}</h3>
+                                  </div>
+                                  <div class="media-body">
+                                    <img src="assets/img/coins.png" class="ml-2 coin-img">
+                                  </div>
+                                  <div class="media-right">
+                                    <button class="btn btn-coin btn-primary"
+                                      (click)="buyCoin(coinplan._id)">${{ coinplan.amount }}</button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="modal-footer">
+                              <p>By purchasing any of the above coin plans, you accept our Terms of Service.</p>
+                            </div>
+                          </ng-template>
+                        </div>
+                      </div>
+                    </div>
+                  </ng-template>
+                </ngb-tab> -->
+              </ngb-tabset>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

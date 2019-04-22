@@ -1,0 +1,182 @@
+<!--START: FOOTER-->
+<section class="b-ftr"  [ngClass]="{'style2' : navExpand , 'style4' :FooterHide}">
+  <!--START: MAIN-FOOTER-->
+  <div class="footer">
+    <div class="container">
+      <div class="row">
+        <div class="col-12 col-sm-6 col-md-3">
+          <ul class="list-unstyled footer-list">
+            <h5 class="footer-heading">ABOUT US</h5>
+            <li>
+              <a href="#">How it works</a>
+            </li>
+            <li>
+              <a href="#">About us</a>
+            </li>
+            <li>
+              <a href="#">FAQ</a>
+            </li>
+          </ul>
+        </div>
+        <div class="col-12 col-sm-6 col-md-3">
+          <ul class="list-unstyled footer-list">
+            <h5 class="footer-heading">MORE</h5>
+            <li>
+              <a href="#">Terms and Condition</a>
+            </li>
+            <li>
+              <a href="#">Privacy Policy</a>
+            </li>
+            <li>
+              <a href="#">Acceptable user policy</a>
+            </li>
+            <li>
+              <a href="#">Contact</a>
+            </li>
+          </ul>
+        </div>
+        <!--START: CONTACT US FORM-->
+        <div class="col-12 col-sm-12 col-md-6">
+          <h5 class="footer-heading">CONTACT US</h5>
+          <div class="row">
+            <div class="col-sm-12 col-md-12">
+              <ul class="list-unstyled footer-list">
+                <li>
+                  <a href="#"> Exclusive Deals and Offers!</a>
+                </li>
+                <li>
+                  <a href="#"> Subscribe and be the first to get great deals!</a>
+                </li>
+              </ul>
+              <form>
+                <ul class="list-inline">
+                  <div class="d-flex justify-content-between">
+                    <li class="list-inline-item">
+                      <div class="form-group" id="mat-edited">
+                        <mat-form-field class="example-full-width set-border1">
+                          <input matInput placeholder="Your Email Address" error-set>
+                        </mat-form-field>
+                      </div>
+                    </li>
+                    <li class="list-inline-item">
+                      <mat-radio-group id="set-radio">
+                    <li class="list-inline-item">
+                      <mat-radio-button value="Male">Male</mat-radio-button>
+                    </li>
+                    <li class="list-inline-item">
+                      <mat-radio-button value="Female">Female</mat-radio-button>
+                    </li>
+                    </mat-radio-group>
+                    </li>
+                    <li class="list-inline-item">
+                      <button mat-raised-button class="mat-btn pt-1">SIGN ME UP</button>
+                    </li>
+                  </div>
+                  <div class="d-flex justify-content-between">
+                    <li class="list-inline-item">
+                      <div class="form-group" id="mat-edited">
+                        <mat-form-field class="example-full-width set-border">
+                          <input matInput placeholder="Your Mobile Number" error-set>
+                        </mat-form-field>
+                      </div>
+                    </li>
+                    <li class="list-inline-item pt-1">
+                      <button mat-raised-button class="mat-btn pt-1">DOWNLOAD NOW</button>
+                    </li>
+                  </div>
+                </ul>
+              </form>
+              <div class="row">
+                <div class="col-6 col-sm-6 col-md-6">
+                  <ul class="list-inline common-list">
+                    <h5 class="footer-heading">FOLLOW US</h5>
+                    <li class="list-inline-item">
+                      <a href="https://www.facebook.com/"><i class="fa fa-facebook fa-2x fb" aria-hidden="true"></i></a>
+                    </li>
+                    <li class="list-inline-item">
+                      <a href="https://www.twitter.com/"> <i class="fa fa-twitter fa-2x tw" aria-hidden="true"></i></a>
+                    </li>
+                    <li class="list-inline-item">
+                      <a href="https://www.instagram.com/"> <i class="fa fa-instagram fa-2x inst"
+                          aria-hidden="true"></i></a>
+                    </li>
+                  </ul>
+                </div>
+                <div class="col-6 col-sm-6 col-md-6">
+                  <ul class="list-inline common-list">
+                    <h5 class="footer-heading">Download the App</h5>
+                    <li class="list-inline-item">
+                      <img src="/assets/img/android-store.png" class="img-fluid app-img" alt="Responsive image">
+                    </li>
+                    <li class="list-inline-item">
+                      <img src="/assets/img/apple-store.png" class="img-fluid app-img" alt="Responsive image">
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--END: CONTACT US FORM-->
+      </div>
+    </div>
+  </div>
+  <!--END: MAIN-FOOTER-->
+
+  <!--START: SUB-FOOTER-->
+  <div class="sub-footer">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-5">
+          <ul class="list-inline">
+            <li class="list-inline-item">
+              <p class="text-muted text-capitalize">payment methods</p>
+            </li>
+            <li class="list-inline-item">
+              <img src="assets/img/payicon-1.png" alt="">
+            </li>
+            <li class="list-inline-item">
+              <img src="assets/img/payicon-2.png" alt="">
+            </li>
+            <li class="list-inline-item">
+              <img src="assets/img/payicon-3.png" alt="">
+            </li>
+            <li class="list-inline-item">
+              <img src="assets/img/payicon-4.png" alt="">
+            </li>
+          </ul>
+        </div>
+        <div class="col-sm-3">
+          <p class="text-muted">&copy; BuyBusiness 2018</p>
+        </div>
+        <div class="col-sm-4">
+          <ul class="list-inline">
+            <li class="list-inline-item">
+              <p class="text-muted text-capitalize">avaliable countries</p>
+            </li>
+          <li class="list-inline-item" (click)="selectCountry('India')">
+              <img src="assets/img/flag-1.png" alt="">
+            </li>
+          <li class="list-inline-item" (click)="selectCountry('Singapore')">
+              <img src="assets/img/flag-2.png" alt="">
+            </li>
+          <li class="list-inline-item" (click)="selectCountry('Malaysia')">
+              <img src="assets/img/flag-3.png" alt="">
+            </li>
+          <li class="list-inline-item" (click)="selectCountry('Thailand')">
+              <img src="assets/img/flag-4.png" alt="">
+            </li>
+          <li class="list-inline-item" (click)="selectCountry('Bangladesh')">
+              <img src="assets/img/flag-5.png" alt="">
+            </li>
+          <li class="list-inline-item" (click)="selectCountry('Philippines')">
+              <img src="assets/img/flag-6.png" alt="">
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--END: SUB-FOOTER-->
+</section>
+<!--END: FOOTER-->

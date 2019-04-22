@@ -1,0 +1,179 @@
+<!--START : AUTHENTICATION-->
+<section class="authentication-page">
+  <div class="container">
+    <div class="row justify-content-md-center">
+      <div class="col-md-8 mb-5">
+        <div class="card">
+          <div class="card-body auth-pd">
+            <img src="assets/img/Logo_png3.png" class="main-logo">
+            <ngb-tabset type="pills" [justify]="currentJustify">
+              <!--START: ADMIN-->
+              <ngb-tab>
+                <ng-template ngbTabTitle><span class="tab-title">Login</span></ng-template>
+                <ng-template ngbTabContent class="mt-2">
+                    <!-- <h4 class="text-center">Login</h4> -->
+                    <button type="submit" class="btn btn-primary btn-block mt-2 bt-fb auth-form" (click)="faceBook()">
+                      <i class="fa fa-facebook mr-2" aria-hidden="true"></i> Facebook</button>
+                    <button type="submit" class="btn btn-primary btn-block bt-gog mb-4 auth-form" (click)="google()">
+                      <i class="fa fa-google mr-2" aria-hidden="true"></i> Gmail</button>
+                    <form [formGroup]="Loginform" #f="ngForm" (ngSubmit)="onSignin()">
+                      <div class="input-group mb-3">
+                        <input type="text" class="form-control auth-form" placeholder="Type Your Name"
+                          aria-describedby="basic-addon2" formControlName="username" [ngClass]="{'form-error':Loginform.controls.username.invalid && (submitted || Loginform.controls.username.touched)}">
+                        <div class="input-group-append">
+                          <span class="input-group-text"><i class="fa fa-user-o" aria-hidden="true"></i></span>
+                        </div>
+                      </div>
+                      <p class="err"
+                        *ngIf="Loginform.controls['username'].errors?.required && (submitted || Loginform.controls['username'].touched)">
+                        Enter
+                        Your Emial To Login</p>
+                      <p class="err"
+                        *ngIf="Loginform.controls['username'].errors?.patternInvalid && (f.submitted || Loginform.controls['username'].touched)">
+                        Please
+                        Enter Valid Email Address </p>
+                      <div class="input-group mb-3">
+                        <input type="password" class="form-control auth-form" placeholder="Type Your Password"
+                          aria-describedby="basic-addon2" formControlName="password"
+                          [ngClass]="{'form-error':Loginform.controls.password.invalid && (submitted || Loginform.controls.password.touched)}">
+                        <div class="input-group-append">
+                          <span class="input-group-text"><i class="fa fa-lock" aria-hidden="true"></i></span>
+                        </div>
+                      </div>
+                      <p class="err"
+                        *ngIf="Loginform.controls['password'].errors?.required && (submitted || Loginform.controls['password'].touched)">
+                        Enter
+                        Your Password</p>
+                      <p class="err"
+                        *ngIf="Loginform.controls['password'].errors?.minlength && (f.submitted || Loginform.controls['password'].touched)">
+                        Password
+                        Should Contain 6 Characters </p>
+                      <div class="form-group">
+                        <button class="btn btn-primary btn-block auth-form" type="submit">Log in</button>
+                      </div>
+                    </form>
+                    <ul class="list-inline text-center">
+                      <li><a class="set-id">Forgot Password?</a></li>
+                      <li class="list-inline-item">
+                        <p>Don't have an account?</p>
+                      </li>
+                      <li class="list-inline-item">
+                        <a class="set-id">Click SignUp</a>
+                      </li>
+                    </ul>
+                </ng-template>
+              </ngb-tab>
+              <!--END: ADMIN-->
+
+              <!--START:USER-->
+              <ngb-tab>
+                <ng-template ngbTabTitle><span class="tab-title">Sign-up</span></ng-template>
+                <ng-template ngbTabContent>
+                    <!-- <h4 class="text-center">Sign Up</h4> -->
+                    <button type="submit" class="btn btn-primary btn-block mt-2 bt-fb auth-form">
+                      <i class="fa fa-facebook mr-2" aria-hidden="true"></i> Facebook</button>
+                    <button type="submit" class="btn btn-primary btn-block bt-gog mb-4 auth-form">
+                      <i class="fa fa-google mr-2" aria-hidden="true"></i> Gmail</button>
+                      <form [formGroup]="SignupForm" #f="ngForm" (ngSubmit)="onSignup()">
+                        <div class="input-group mb-2">
+                          <input type="Email" class="form-control" placeholder="Email" formControlName="email"
+                            [ngClass]="{'form-error':SignupForm.controls.email.invalid && (submitted || SignupForm.controls.email.touched)}"
+                            aria-describedby="basic-addon2">
+                          <div class="input-group-append">
+                            <span class="input-group-text log-in" id="basic-addon2"><i class="fa fa-envelope-o"
+                                aria-hidden="true"></i></span>
+                          </div>
+                        </div>
+                        <p class="err"
+                          *ngIf="SignupForm.controls['email'].errors?.required && (submitted || SignupForm.controls['email'].touched)">
+                          Enter
+                          Your Email</p>
+                        <div class="input-group mb-2">
+                          <input type="Username" class="form-control" placeholder="Username" aria-describedby="basic-addon2"
+                            formControlName="username"
+                            [ngClass]="{'form-error':SignupForm.controls.username.invalid && (submitted || SignupForm.controls.username.touched)}"
+                            aria-describedby="basic-addon2">
+
+                          <div class="input-group-append">
+                            <span class="input-group-text log-in" id="basic-addon2"><i class="fa fa-user-o"
+                                aria-hidden="true"></i></span>
+                          </div>
+                        </div>
+                        <p class="err"
+                          *ngIf="SignupForm.controls['username'].errors?.required && (submitted || SignupForm.controls['username'].touched)">
+                          Enter
+                          Username</p>
+                        <div class="input-group mb-2">
+                          <input type="password" class="form-control" placeholder="Password" aria-describedby="basic-addon2"
+                            formControlName="password"
+                            [ngClass]="{'form-error':SignupForm.controls.password.invalid && (submitted || SignupForm.controls.password.touched)}"
+                            aria-describedby="basic-addon2">
+
+                          <div class="input-group-append">
+                            <span class="input-group-text log-in" id="basic-addon2"><i class="fa fa-lock"
+                                aria-hidden="true"></i></span>
+                          </div>
+                        </div>
+                        <p class="err"
+                          *ngIf="SignupForm.controls['password'].errors?.required && (submitted || SignupForm.controls['password'].touched)">
+                          Enter
+                          Password</p>
+                        <select class="custom-select custom-select-md mb-3" formControlName="country"
+                          [ngClass]="{'form-error':SignupForm.controls.country.invalid && (submitted || SignupForm.controls.country.touched)}"
+                          aria-describedby="basic-addon2" (ngModelChange)="DialCode($event)">
+                          <option value="">Select Your Country</option>
+                          <option *ngFor="let country of Country" [value]="country.id">{{country.name}}</option>
+                        </select>
+                        <p class="err"
+                          *ngIf="SignupForm.controls['country'].errors?.required && (submitted || SignupForm.controls['country'].touched)">
+                          Select
+                          Your Country</p>
+                        <h6>Phone Verfication</h6>
+                        <p>This is to ensure a safe and trusted community for buying and selling</p>
+                        <div class="input-group mb-2">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text">{{DialIndex}}</span>
+                          </div>
+                          <input type="text" class="form-control verify-box" formControlName="phone_number"
+                            [ngClass]="{'form-error':SignupForm.controls.phone_number.invalid && (submitted || SignupForm.controls.phone_number.touched)}"
+                            aria-describedby="basic-addon2">
+
+                          <div class="input-group-append">
+                            <a class="btn btn-primary verify-btn" role="button" (click)="OnOpt()">Verify</a>
+                            <a class="btn btn-primary verify-btn" role="button" (click)="OnOpt()"
+                              *ngIf="showTimer">{{timeLeft}}</a>
+                          </div>
+                        </div>
+                        <!--  -->
+                        <div class="input-group mb-2">
+                          <input type="password" class="form-control" formControlName="token" placeholder="Enter OTP"
+                            type="number">
+                        </div>
+                        <!--  -->
+                        <p class="err"
+                          *ngIf="SignupForm.controls['phone_number'].errors?.required && (submitted || SignupForm.controls['phone_number'].touched)">
+                          Enter
+                          Phone Number</p>
+                        <div class="form-group">
+                          <button class="btn btn-primary btn-sm btn-block set-primary" type="submit">Sign up</button>
+                        </div>
+                        <ul class="list-inline text-center">
+                          <li class="list-inline-item">
+                            <p>Already have an account?</p>
+                          </li>
+                          <li class="list-inline-item">
+                            <a>Click Log in</a>
+                          </li>
+                        </ul>
+                      </form>
+                  </ng-template>
+              </ngb-tab>
+              <!--END:USER-->
+            </ngb-tabset>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!--END : AUTHENTICATION-->

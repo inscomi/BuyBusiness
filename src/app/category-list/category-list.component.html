@@ -1,0 +1,444 @@
+<!--  -->
+
+<div class="category-background">
+
+  <section class="pad-25 category-list">
+
+    <!-- ADD BANNER -->
+
+    <!-- <div class="add-banner" *ngIf="listingTop && listingTop.length >= 1">
+
+      <img [src]="listingTop[0]" alt="add-banner" class="add-image">
+
+    </div> -->
+    <div class="col-sm-12 col-md-8 mx-auto">
+        <div class="top-banner mt-3">
+           <owl-carousel-o [options]="topBanner"  *ngIf="listingTop && listingTop.length >= 1">
+            <ng-container *ngFor="let listingTopimages of listingTop">
+            <ng-template carouselSlide>
+              <img [src]="listingTopimages" class="add-image">
+            </ng-template>
+            </ng-container>
+             </owl-carousel-o>
+        </div>
+      </div>
+
+    <!-- ADD BANNER -->
+
+    <div class="category-head">
+
+      <div class="container">
+
+        <div class="row">
+
+          <div class="col-sm-6">
+
+            <nav aria-label="breadcrumb">
+
+              <ol class="breadcrumb">
+
+                <li class="breadcrumb-item">
+
+                  <a routerLink="/">
+
+                    <i class="fa fa-home mr-2"></i>Home</a>
+
+                </li>
+
+                <li class="breadcrumb-item" aria-current="page">
+
+                  <a routerLink="/category-list">Category Listing</a>
+
+                </li>
+
+              </ol>
+
+            </nav>
+
+          </div>
+
+          <div class="col-sm-6">
+
+
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="container">
+
+      <div class="row">
+
+        <div class="col-md-2 pr-0">
+
+          <div class="sidebar-custom" id="filter-set">
+
+            <ngb-accordion #acc="ngbAccordion"
+
+              activeIds="ngb-panel-0,ngb-panel-1,ngb-panel-2,ngb-panel-3,ngb-panel-4,ngb-panel-5,ngb-panel-6">
+
+              <ngb-panel title="" id="ngb-panel-0">
+
+                <ng-template ngbPanelTitle>
+
+                  <h5 class="text-uppercase">SORT</h5>
+
+                </ng-template>
+
+                <ng-template ngbPanelContent>
+
+                  <ul class="list-group">
+
+                    <li class="list-group-item">
+
+                      <mat-radio-group labelPosition="before" [(ngModel)]="sortBy" (change)="filterProduct($event)">
+
+                        <mat-radio-button value="popular">Popular</mat-radio-button>
+
+                        <mat-radio-button value="recent">Recent </mat-radio-button>
+
+                        <mat-radio-button value="low">Price - Low To High</mat-radio-button>
+
+                        <mat-radio-button value="high">Price - High To Low </mat-radio-button>
+
+                      </mat-radio-group>
+
+                    </li>
+
+                    <li class="list-group-item">
+
+                      <mat-radio-group labelPosition="before">
+
+                        <mat-radio-button value="1">Reg Year - Latest</mat-radio-button>
+
+                      </mat-radio-group>
+
+                    </li>
+
+                  </ul>
+
+                </ng-template>
+
+              </ngb-panel>
+
+              <ngb-panel id="ngb-panel-2">
+
+                <ng-template ngbPanelTitle>
+
+                  <h5 class="text-uppercase">PRICE</h5>
+
+                </ng-template>
+
+                <ng-template ngbPanelContent>
+
+                  <div class="row">
+
+                    <div class="col-md-6">
+
+                      <mat-form-field class="mat-width-ctm">
+
+                        <input matInput type="number" placeholder="Min"  [(ngModel)]="minPrice" (change)="filterProduct($event)">
+
+                      </mat-form-field>
+
+                    </div>
+
+                    <div class="col-md-6 p-0">
+
+                      <mat-form-field class="mat-width-ctm">
+
+                        <input matInput type="number" placeholder="Max"  [(ngModel)]="maxPrice" (change)="filterProduct($event)">
+
+                      </mat-form-field>
+
+                    </div>
+
+                  </div>
+
+                </ng-template>
+
+              </ngb-panel>
+
+              <ngb-panel id="ngb-panel-3">
+
+                <ng-template ngbPanelTitle>
+
+                  <h5 class="text-uppercase">By Name</h5>
+
+                </ng-template>
+
+                <ng-template ngbPanelContent>
+
+                  <mat-form-field class="mat-width-ctm set-custom">
+
+                    <input matInput type="text" placeholder="Search By Name" [(ngModel)]="searchName" (change)="filterProduct($event)">
+
+                  </mat-form-field>
+
+                </ng-template>
+
+              </ngb-panel>
+
+            </ngb-accordion>
+
+          </div>
+
+        </div>
+
+        <div class="col-md-8">
+ <!-- START : CATEGORY LIST DISPLAY  -->
+  <div class="cat-list col-md-12">
+    <h6 class="mt-4">Property for Sale Singapore, HDB, Condo, Condominium for Sale</h6>
+    <p>Property for sale in Singapore and more! Find real estate listings on landed houses for sale, resale condos, executive condos for sale & resale HDBs on Carousell.</p>
+      <ul class="list-inline">
+          <li class="list-inline-item bottom-para">
+            <div class="card">
+              <div class="card-body cat-card">
+                  <img src="./assets/img/home.jpg" class="cat-list-img">
+              </div>
+              <div class="cat-overlay">
+                <p class="mb-0 cat-desc">Business</p>
+              </div>
+            </div>
+          </li>
+          <li class="list-inline-item bottom-para">
+              <div class="card">
+                <div class="card-body cat-card">
+                    <img src="./assets/img/home.jpg" class="cat-list-img">
+                </div>
+                <div class="cat-overlay">
+                  <p class="mb-0 cat-desc">Rental</p>
+                </div>
+              </div>
+            </li>
+            <li class="list-inline-item bottom-para">
+                <div class="card">
+                  <div class="card-body cat-card">
+                      <img src="./assets/img/home.jpg" class="cat-list-img">
+                  </div>
+                  <div class="cat-overlay">
+                    <p class="mb-0 cat-desc">New</p>
+                  </div>
+                </div>
+              </li>
+              <li class="list-inline-item bottom-para">
+                  <div class="card">
+                    <div class="card-body cat-card">
+                        <img src="./assets/img/home.jpg" class="cat-list-img">
+                    </div>
+                    <div class="cat-overlay">
+                      <p class="mb-0 cat-desc">Old</p>
+                    </div>
+                  </div>
+                </li>
+        </ul>
+  </div>
+  <!-- END : CATEGORY LIST DISPLAY -->
+          <div class="card set-pad">
+
+            <div class="card-body p-2">
+
+              <div class="for-space pt-3">
+
+                <div class="row">
+
+                  <div class="col-md-6">
+
+
+
+                  </div>
+
+                  <div class="col-md-3 text-right">
+
+                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+
+                      <label class="btn btn-primary active btn-sm" routerLink="/category-list">
+
+                        <input type="radio" name="options" id="option1" autocomplete="off" checked>
+
+                        <i class="fa fa-th mr-1"></i> List
+
+                      </label>
+
+                      <label class="btn btn-primary btn-sm" routerLink="/category-map/cat1">
+
+                        <input type="radio" name="options" id="option2" autocomplete="off">
+
+                        <i class="fa fa-map mr-1"></i> Map
+
+                      </label>
+
+                    </div>
+
+                  </div>
+
+                  <div class="col-md-3">
+
+                    <select class="form-control set-control" [(ngModel)]="sortBy" (change)="filterProduct($event)">
+
+                      <option value="" disabled>Sort By</option>
+
+                      <option value="popular" selected>Popular</option>
+
+                      <option value="recent">Recent</option>
+
+                      <option value="high">Price High - Low</option>
+
+                      <option value="low">Price Low - High</option>
+
+                    </select>
+
+                  </div>
+
+                </div>
+
+              </div>
+
+              <div class="row product-data">
+
+                <!-- | paginate: { id: 'foo', itemsPerPage: pageSize,currentPage: p, totalItems: total }" -->
+
+                <!-- <div class="col-md-3 col-sm-6 col-mob1 col-mob for-pad" *ngFor="let data of productlist | grdFilter:searchTerm"> -->
+
+                <div class="col-md-3 col-sm-6 col-mob1 col-mob for-pad"
+
+                  *ngFor="let data of productlist | grdFilter:searchTerm">
+
+                  <div class="card" routerLink="/category-detail/{{data.productPostingID}}">
+
+                    <div class="image hovereffect">
+
+                      <span class="badge badge-pill badge-danger ml-2 thunder-badge">
+
+                        <i class="fa fa-bolt mr-2"></i>
+
+                        {{data.productThunder}}</span>
+
+                      <span class="badge badge-secondary">
+
+                        <i class="fa fa-heart set-hov"></i>
+
+                        {{data.productLikes}}
+
+                      </span>
+
+                      <img class="card-img-top" src="{{data.coverimage}}" alt="Card image cap">
+
+                    </div>
+
+                    <div class="user-img">
+
+                      <img src="./assets/img/user-img.png" class="item">
+
+                    </div>
+
+                    <div class="card-body">
+
+                      <ul class="list-inline set-inline mb-2">
+
+                        <h6 class="heading">{{data.productTitle}}</h6>
+
+                        <h6 class="make m-0"> {{data.productName}}</h6>
+
+                        <h6 class="make m-0"><i class="fa fa-usd mr-1"></i>{{data.productCost}}</h6>
+
+                        <p class="description">{{data.productDescription}}</p>
+
+                      </ul>
+
+                    </div>
+
+                  </div>
+
+                </div>
+
+                <div class="col-md-12 col-mob1 col-mob for-pad" *ngIf="productlistLength == 0">
+
+                  <img src="./assets/img/nodata.png" class="nodata">
+
+                </div>
+
+              </div>
+
+              <div class="col-md-3" *ngIf="ShowImage">
+
+                <img src="./assets/img/user-img.png" class="item">
+
+              </div>
+
+              <div class="custom-pagination m-4">
+
+                <div class="row justify-content-md-center">
+
+                  <div class="col-md-auto">
+
+                    <!-- <pagination-controls (pageChange)="p = $event"></pagination-controls> -->
+
+                    <!-- <button type="button" class="btn btn-outline-secondary btn-left btn-sm deft-btn mr-4">Prev</button>
+
+                    <button type="button" class="btn btn-outline-primary btn-left btn-sm deft-btn">Next</button> -->
+
+                  </div>
+
+                </div>
+
+              </div>
+
+            </div>
+
+            <!--  -->
+
+          </div>
+
+        </div>
+
+        <!-- <div class="col-md-2" *ngIf="listingRight && listingRight.length >= 1">
+          <img [src]="listingRight[0]" alt="add-banner" class="side-adds">
+        </div> -->
+        <!--START : BANNER RIGHT-->
+        <div class="col-md-2 mx-auto">
+            <div class="right-banner">
+              <owl-carousel-o [options]="rightBanner"  *ngIf="listingRight && listingRight.length >= 1">
+                <ng-container *ngFor="let listingRightimages of listingRight">
+                <ng-template carouselSlide>
+                  <img [src]="listingRightimages" class="side-adds img-fluid">
+                </ng-template>
+                </ng-container>
+               </owl-carousel-o>
+            </div>
+          </div>
+        <!--END : BANNER RIGHT-->
+
+      </div>
+
+    </div>
+
+    <!-- ADD BANNER -->
+
+    <!-- <div class="add-banner" *ngIf="listingBottom && listingBottom.length >= 1">
+      <img [src]="listingBottom[0]" alt="add-banner" class="add-image">
+    </div> -->
+    <div class="col-sm-12 col-md-8 mx-auto">
+        <div class="bottom-banner mt-3">
+          <owl-carousel-o [options]="bottomBanner"  *ngIf="listingBottom && listingBottom.length >= 1">
+            <ng-container *ngFor="let listingBottomimages of listingBottom">
+            <ng-template carouselSlide>
+              <img [src]="listingBottomimages" class="add-image">
+            </ng-template>
+            </ng-container>
+            </owl-carousel-o>
+        </div>
+      </div>
+    <!-- ADD BANNER -->
+
+  </section>
+
+</div>
+
+
+
+<!--  -->

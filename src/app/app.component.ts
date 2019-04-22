@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
-import { Router, NavigationEnd } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  title = 'buybusiness';
+  title = 'Buybusiness';
   lat: number = 26.765844;
   lng: number = 83.364944;
   constructor(private router: Router, ) { }
@@ -18,7 +19,7 @@ export class AppComponent {
         return;
       }
       window.scrollTo(0, 0)
-      this.loading=false;
+      this.loading = false;
     });
   }
 

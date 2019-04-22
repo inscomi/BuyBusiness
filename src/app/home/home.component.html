@@ -1,0 +1,558 @@
+<!-- START: HOME-->
+<div class="white-banner">
+  <!-- START: MAIN BANNER-->
+  <div class="main-banner" [ngClass]="{'for-scroll': isScrolled}">
+    <!-- ADD BANNER -->
+    <!-- <div class="add-banner" *ngIf="homepageTop && homepageTop.length >= 1">
+      <img [src]="homepageTop[0]" alt="add-banner" class="add-image">
+    </div> -->
+    <div class="col-md-8 mx-auto">
+  <div class="top-banner mt-3">
+    <!-- <img [src]="homepageTop[0]" alt="add-banner" class="add-image"> -->
+    <owl-carousel-o [options]="addisplayBanner"  *ngIf="homepageTop && homepageTop.length >= 1">
+      <ng-container *ngFor="let homepageTopimages of homepageTop">
+      <ng-template carouselSlide>
+        <img [src]="homepageTopimages" class="add-image">
+      </ng-template>
+      </ng-container>
+    </owl-carousel-o>
+  </div>
+</div>
+    <!-- ADD BANNER -->
+    <section class="pad-30">
+      <div class="container">
+        <div class="card common-card">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-2 col-sm-4 text-center pl-2 pr-2">
+                <div class="tab-set">
+                  <ul class="dropdown list-unstyled set-list" ngbDropdown *ngFor="let item of menu">
+                    <li class="" ngbDropdownToggle>
+                      <img [src]="item.images" class="category-icons" alt="{{item.TitleName}}"
+                        title="{{item.TitleName}}">
+                      <span class="titlearrow"> {{item.TitleName}} </span>
+                      <ul class="dropdown-menu multi-level" ngbDropdownMenu>
+                        <li class="dropdown-submenu" ngbDropdown *ngFor="let catitems of item.Category">
+                          <a class="dropdown-item dropdown-toggle" ngbDropdownToggle tabindex="-1"><span
+                              class="subarrow">{{catitems.CategoryName}}</span></a>
+                          <ul class="dropdown-menu" ngbDropdownMenu>
+                            <li class="dropdown-item" *ngFor="let subCatItems of catitems.SubCategory"
+                              routerLink="/category-list/{{subCatItems.scatID}}">
+                              <p class="mb-0"> {{subCatItems.subCatName}}</p>
+                            </li>
+                          </ul>
+                        </li>
+                      </ul>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div class="col-md-7 col-sm-8  sub-banner1">
+                <owl-carousel-o [options]="mainBanner"  *ngIf="homepageMain && homepageMain.length >= 1">
+                  <ng-container *ngFor="let homepageMainimages of homepageMain">
+                  <ng-template carouselSlide>
+                    <img [src]="homepageMainimages" class="main-add">
+                  </ng-template>
+                  </ng-container>
+                  <!-- <ng-template carouselSlide>
+                    <img src="./assets/img/banner.png">
+                  </ng-template> -->
+                </owl-carousel-o>
+              </div>
+              <div class="col-md-3 col-sm-12">
+                <!-- START:ADD BANNERS -->
+                <div class="row">
+                  <div class="col-md-12 sub-banner2">
+                    <owl-carousel-o [options]="mainBanner">
+                      <ng-container *ngFor="let homepageRightTopImages of homepageRightTop">
+                      <ng-template carouselSlide>
+                        <img [src]="homepageRightTopImages" class="img sub-add" alt="Responsive image">
+                      </ng-template>
+                      </ng-container>
+                    </owl-carousel-o>
+                  </div>
+                  <div class="col-md-12 sub-banner3">
+                    <owl-carousel-o [options]="customOptions">
+                      <ng-container *ngFor="let homepageRightBottomImages of homepageRightBottom">
+                      <ng-template carouselSlide>
+                        <img [src]="homepageRightBottomImages" class="img second-add sub-add" alt="Responsive image">
+                      </ng-template>
+                      </ng-container>
+                    </owl-carousel-o>
+                  </div>
+                </div>
+                <!-- END:ADD BANNERS -->
+              </div>
+            </div>
+            <!--  -->
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+  <!-- END: MAIN BANNER-->
+
+  <!-- START: EIGHT CELL GRID-->
+  <section>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-3">
+          <!-- {{Bgrid.eightCellsGrid.gridTitle}} -->
+          <h4 class="sub-heading">Business for Sales</h4>
+        </div>
+        <div class="col-sm-9">
+          <hr class="progressd">
+        </div>
+      </div>
+      <!-- routerLink="/category-list/{{Bgrid.eightCellsGrid.BannerLinkID}}" -->
+      <div class="card secondary-card">
+        <div class="card-body">
+          <div class="media">
+            <img class="mr-1" src="/assets/img/agricon.png" alt="Business Sale">
+            <div class="media-body" id="style-3">
+              <ul class="list-inline product-list">
+                <!-- <div > -->
+                <ngb-carousel>
+                  <ng-template ngbSlide>
+                    <ul class="list-inline">
+                      <li class="list-inline-item" *ngFor="let promotionSearchResult of promotionSearch">
+                        <ng-container
+                          *ngIf="promotionSearchResult.title == 'Business For Sales' || promotionSearchResult.title == '' || (!promotionSearchResult.title)">
+                          <div class="card product-card" *ngFor="let productInfo of promotionSearchResult.product">
+                            <img class="product-img" src="{{ productInfo.coverimage }}" alt="Business Sale">
+                            <div class="set-pos">
+                              <div class="row">
+                                <div class="col-sm-8">
+                                  <h5 class="sub-head">{{ productInfo.productTitle }}</h5>
+                                </div>
+                                <div class="col-sm-4 text-right">
+                                  <span class="likes">
+
+                                    <i class="fa fa-heart fa-set"
+                                      aria-hidden="true"></i>{{ productInfo.productLikes }}</span>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </ng-container>
+                      </li>
+                    </ul>
+                  </ng-template>
+                </ngb-carousel>
+                <!-- <li class="list-inline-item" *ngFor="let promotionSearchResult of promotionSearch">
+                  <ng-container *ngIf="promotionSearchResult.title == 'Business for Sales' || promotionSearchResult.title == '' || (!promotionSearchResult.title)">
+                  <div class="card product-card" *ngFor="let productInfo of promotionSearchResult.product">
+                    <img class="product-img" src="{{ productInfo.coverimage }}" alt="Business Sale">
+                    <div class="set-pos">
+                      <div class="row">
+                        <div class="col-sm-8">
+                          <h5 class="sub-head">{{ productInfo.productTitle }}</h5>
+                        </div>
+                        <div class="col-sm-4 text-right">
+                          <span class="likes">
+                            <i class="fa fa-heart fa-set" aria-hidden="true"></i>{{ productInfo.productLikes }}</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  </ng-container>
+                </li> -->
+                <!-- </div> -->
+              </ul>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- END: EIGHT CELL GRID--->
+
+  <!-- START: FOUR CELL GRID-->
+  <section class="pad-15 franchise">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 col-sm-12 sales-box">
+          <div class="row">
+            <div class="col-md-5">
+              <!-- {{Bgrid.fourCellsGrid1.gridTitle}} -->
+              <h5 class="sub-heading">Franchise for Sales</h5>
+            </div>
+            <div class="col-md-7">
+              <hr class="progressd">
+            </div>
+          </div>
+          <div class="card">
+            <!-- Automobile Section -->
+            <!-- routerLink="/category-list/{{Bgrid.fourCellsGrid1.BannerLinkID}}" -->
+            <div class="media">
+              <img class="mr-0 imgside" src="./assets/img/auto.png" alt="Generic placeholder image">
+              <div class="media-body" id="style-3">
+                <ul class="list-inline franchise-list">
+                  <ngb-carousel>
+                    <ng-template ngbSlide>
+                      <!-- *ngFor="let title of Bgrid.fourCellsGrid1.CellData" -->
+                      <li class="list-inline-item" *ngFor="let promotionSearchResult of promotionSearch">
+                        <ng-container *ngIf="promotionSearchResult.title == 'Franchise For Sales'">
+                          <div class="card common-auto" *ngFor="let productInfo of promotionSearchResult.product">
+                            <h6 class="card-title">{{ productInfo.productTitle }}</h6>
+                            <div class="card-body">
+                              <img class="mt-3 img-fluid" src="{{ productInfo.coverimage }}"
+                                alt="Generic placeholder image">
+                            </div>
+                          </div>
+                        </ng-container>
+                      </li>
+                    </ng-template>
+                  </ngb-carousel>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- END -->
+        <div class="col-md-6 col-sm-12 books-box">
+          <div class="row">
+            <div class="col-md-6">
+              <!-- {{Bgrid.fourCellsGrid2.gridTitle}} -->
+              <h5 class="sub-heading ml-2">Looking for Investment</h5>
+            </div>
+            <div class="col-md-6">
+              <hr class="progressd">
+            </div>
+          </div>
+          <div class="card">
+            <div class="media">
+              <img class="mr-0 imgside" src="./assets/img/book.png" alt="Generic placeholder image">
+              <div class="media-body" id="style-3">
+                <ul class="list-inline investment-list">
+                  <ngb-carousel>
+                    <ng-template ngbSlide>
+                      <li class="list-inline-item" *ngFor="let promotionSearchResult of promotionSearch">
+                        <ng-container *ngIf="promotionSearchResult.title == 'Looking for Investment'">
+                          <div class="card common-auto" *ngFor="let productInfo of promotionSearchResult.product">
+                            <h6 class="card-title">{{ productInfo.productTitle }}</h6>
+                            <div class="card-body">
+                              <img class="mt-3 img-fluid" src="{{ productInfo.coverimage }}"
+                                alt="Generic placeholder image">
+                            </div>
+                          </div>
+                        </ng-container>
+                      </li>
+                    </ng-template>
+                  </ngb-carousel>
+                  <!-- <li class="list-inline-item" *ngFor="let title of Bgrid.fourCellsGrid2.CellData">
+                    <div class="card common-auto">
+                      <h6 class="card-title">{{title.cellTitle}}</h6>
+                      <div class="card-body">
+                        <img class="mt-3" src="./assets/img/book1.png" alt="Generic placeholder image">
+                      </div>
+                    </div>
+                  </li> -->
+                </ul>
+              </div>
+            </div>
+          </div>
+          <!-- Book Section -->
+        </div>
+        <!-- END -->
+      </div>
+    </div>
+  </section>
+  <!-- END: FOUR CELL GRID-->
+
+  <!-- START: TRED BUSINESS-->
+  <section class="pad-15 trend-business">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-3">
+          <!-- {{trendingSearch.trending1.title}} -->
+          <h4 class="sub-heading">Trending Business</h4>
+        </div>
+        <div class="col-md-9">
+          <hr class="progressd">
+        </div>
+      </div>
+      <div class="trend-custom">
+        <owl-carousel-o [options]="trendingProducts">
+          <ul class="list-inline">
+            <ng-template carouselSlide>
+              <li class="list-inline-item">
+                <div class="card trend-card">
+                  <img src="/assets/img/pr17.png" alt="Card image cap" class="img card-img-top">
+                  <div class="card-body">
+                    <h6 class="card-title">Mobile Case</h6>
+                  </div>
+                </div>
+              </li>
+            </ng-template>
+            <ng-template carouselSlide>
+              <li class="list-inline-item">
+                <div class="card trend-card">
+                  <img src="/assets/img/pr16.png" alt="Card image cap" class="img card-img-top">
+                  <div class="card-body">
+                    <h6 class="card-title">Vip Travel Bags</h6>
+                  </div>
+                </div>
+              </li>
+            </ng-template>
+            <ng-template carouselSlide>
+              <li class="list-inline-item">
+                <div class="card trend-card">
+                  <img src="/assets/img/prbuild.png" alt="Card image cap" class="img card-img-top">
+                  <div class="card-body">
+                    <h6 class="card-title">Luxury Homes</h6>
+                  </div>
+                </div>
+              </li>
+            </ng-template>
+            <ng-template carouselSlide>
+              <li class="list-inline-item">
+                <div class="card trend-card">
+                  <img src="/assets/img/pr15.png" alt="Card image cap" class="img card-img-top">
+                  <div class="card-body">
+                    <h6 class="card-title">Luis Philips</h6>
+                  </div>
+                </div>
+              </li>
+            </ng-template>
+
+            <ng-template carouselSlide>
+              <li class="list-inline-item">
+                <div class="card trend-card">
+                  <img src="/assets/img/pr14.png" alt="Card image cap" class="img card-img-top">
+                  <div class="card-body">
+                    <h6 class="card-title"> Titan Watch</h6>
+                  </div>
+                </div>
+              </li>
+            </ng-template>
+            <ng-template carouselSlide>
+              <li class="list-inline-item">
+                <div class="card trend-card">
+                  <img src="/assets/img/prbuild1.png" alt="Card image cap" class="img card-img-top">
+                  <div class="card-body">
+                    <h6 class="card-title">Budget Villas</h6>
+                  </div>
+                </div>
+              </li>
+            </ng-template>
+            <ng-template carouselSlide>
+              <li class="list-inline-item">
+                <div class="card trend-card">
+                  <img src="/assets/img/pr13.png" alt="Card image cap" class="img card-img-top">
+                  <div class="card-body">
+                    <h6 class="card-title">Branded Purses</h6>
+
+                  </div>
+                </div>
+              </li>
+            </ng-template>
+            <ng-template carouselSlide>
+              <li class="list-inline-item">
+                <div class="card trend-card">
+                  <img src="/assets/img/pr10.png" alt="Card image cap" class="img card-img-top">
+                  <div class="card-body">
+                    <h6 class="card-title">Wood-Land Shoes</h6>
+
+                  </div>
+                </div>
+              </li>
+            </ng-template>
+            <ng-template carouselSlide>
+              <li class="list-inline-item">
+                <div class="card trend-card">
+                  <img src="/assets/img/prbuild2.png" alt="Card image cap" class="img card-img-top">
+                  <div class="card-body">
+                    <h6 class="card-title">Happy Homes</h6>
+                  </div>
+                </div>
+              </li>
+            </ng-template>
+            <ng-template carouselSlide>
+              <li class="list-inline-item">
+                <div class="card trend-card">
+                  <img src="/assets/img/pr12.png" alt="Card image cap" class="img card-img-top">
+                  <div class="card-body">
+                    <h6 class="card-title">Apple Headsets</h6>
+                  </div>
+                </div>
+              </li>
+            </ng-template>
+            <ng-template carouselSlide>
+              <li class="list-inline-item">
+                <div class="card trend-card">
+                  <img src="/assets/img/pr9.png" alt="Card image cap" class="img card-img-top">
+                  <div class="card-body">
+                    <h6 class="card-title">Electronics</h6>
+                  </div>
+                </div>
+              </li>
+            </ng-template>
+            <ng-template carouselSlide>
+              <li class="list-inline-item">
+                <div class="card trend-card">
+                  <img src="/assets/img/pr11.png" alt="Card image cap" class="img card-img-top">
+                  <div class="card-body">
+                    <h6 class="card-title">Wears</h6>
+                  </div>
+                </div>
+              </li>
+            </ng-template>
+            <ng-template carouselSlide>
+              <li class="list-inline-item">
+                <div class="card trend-card">
+                  <img src="/assets/img/prbuild3.png" alt="Card image cap" class="img card-img-top">
+                  <div class="card-body">
+                    <h6 class="card-title">Real Estate</h6>
+                  </div>
+                </div>
+              </li>
+            </ng-template>
+            <ng-template carouselSlide>
+              <li class="list-inline-item">
+                <div class="card trend-card">
+                  <img src="/assets/img/pr8.png" alt="Card image cap" class="img card-img-top">
+                  <div class="card-body">
+                    <h6 class="card-title">Soft Toys</h6>
+                  </div>
+                </div>
+              </li>
+            </ng-template>
+
+          </ul>
+        </owl-carousel-o>
+      </div>
+    </div>
+  </section>
+  <!-- END: TRED BUSINESS-->
+
+  <!-- START: TRED BUSINESS-->
+  <section class="pad-15 top-consultants">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-3">
+          <h4 class="sub-heading">top consultants</h4>
+        </div>
+        <div class="col-md-9">
+          <hr class="progressd">
+        </div>
+      </div>
+      <ul class="list-inline product-list" >
+        <li class="list-inline-item" *ngFor="let promotionSearchResult of promotionSearch">
+          <ng-container *ngIf="promotionSearchResult.title == 'Service'">
+          <div class="card" *ngFor="let productInfo of promotionSearchResult.product">
+            <div class="card-body hovereffect">
+              <!-- /assets/img/logo1.png -->
+              <img src="{{ productInfo.coverimage }}" class="img" alt="">
+              <!--  -->
+              <div class="overlay">
+                <p class="icon-links">
+                  <a href="#">
+                    {{ productInfo.productTitle }}
+                    <!-- <span class="fa fa-twitter"></span> -->
+                  </a>
+                  <!-- <a href="#">
+                    <span class="fa fa-facebook"></span>
+                  </a>
+                  <a href="#">
+                    <span class="fa fa-instagram"></span>
+                  </a> -->
+                </p>
+              </div>
+              <!--  -->
+            </div>
+          </div>
+          </ng-container>
+        </li>
+      </ul>
+    </div>
+  </section>
+  <!-- START: TRED BUSINESS-->
+
+  <!-- START: POPULAR BUSINESS-->
+  <section class="pad-15 popular-business">
+
+
+    <div class="container set-field" [ngClass]="{'show': show}">
+      <div class="row">
+        <div class="col-md-4">
+          <hr class="progressd">
+        </div>
+        <div class="col-md-4">
+          <!-- {{freshFindings.title}} -->
+          <h4 class="sub-heading text-center">Fresh Findings</h4>
+        </div>
+        <div class="col-md-4">
+          <hr class="progressd">
+        </div>
+      </div>
+      <div class="row product-data">
+        <div class="col-sm-6 col-md-3 custom-style" *ngFor="let title of freshFindings let i = index">
+          <div class="card" routerLink="/category-detail/{{title.productPostingID}}"
+            [ngClass]="{'example-1': title.productHighlight}">
+            <div class="image hovereffectd">
+              <span class="badge badge-pill badge-danger ml-2 thunder-badge">
+                <i class="fa fa-bolt mr-2 " aria-hidden="true"></i>
+                {{title.productThunder}}</span>
+              <span class="badge badge-secondary">
+                <i class="fa fa-heart" aria-hidden="true"></i>
+                {{title.productLikes}}
+              </span>
+              <!-- {{ title.mediatype }} -->
+              <img class="card-img-top get-img" src="{{title.coverimage}}" alt="Card image cap"
+                *ngIf="title.mediatype == 'image' || title.mediatype =='' || (!title.mediatype)">
+              <video class="card-img-top get-img" poster="../../../assets/img/video.png" alt="Card image cap"
+                *ngIf="title.mediatype == 'video'">
+                <source src="{{title.coverimage}}">
+              </video>
+              <div class="set-pos overlayd" *ngIf="productDetails">
+                <h6 class="content">
+                  <i class="fa fa-map-marker mr-2" aria-hidden="true"></i>32 Chennai Boulevard
+                  East</h6>
+                <h6 class="content mt-2">
+                  <i class="fa fa-phone mr-2" aria-hidden="true"></i>+91 9895147852
+                </h6>
+              </div>
+            </div>
+            <div class="user-img">
+              <img src="./assets/img/user-img.png" class="item">
+            </div>
+            <div class="card-body">
+              <ul class="list-inline set-inline mb-0">
+                <h6 class="heading" routerLink="/category-detail">{{title.productTitle}}</h6>
+                <h6 class="make m-0"> Audi</h6>
+                <h6 class="make m-0"><i class="fa fa-usd mr-1" aria-hidden="true"></i>{{title.productCost}}</h6>
+                <p class="description">{{title.productDescription}}</p>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="text-center">
+      <button type="button" class="btn btn-success show-btn button12"
+        (click)="show = !show">{{ show ? 'Show More': 'Show Less' }}</button>
+    </div>
+    <!-- ADD BANNER -->
+    <!-- <div class="add-banner" *ngIf="homepageBottom && homepageBottom.length >= 1">
+      <img [src]="homepageBottom[0]" alt="add-banner" class="add-image">
+    </div> -->
+    <div class="col-sm-12 col-md-8 mx-auto">
+        <div class="top-banner mt-3">
+          <!-- src="./assets/img/gif-add.gif" -->
+          <!-- <img [src]="homepageTop[0]" alt="add-banner" class="add-image"> -->
+          <owl-carousel-o [options]="btdisplayBanner"  *ngIf="homepageBottom && homepageBottom.length >= 1">
+            <ng-container *ngFor="let homepageBottomimages of homepageBottom">
+            <ng-template carouselSlide>
+              <img [src]="homepageBottomimages" class="add-image">
+            </ng-template>
+            </ng-container>
+            </owl-carousel-o>
+        </div>
+      </div>
+    <!-- ADD BANNER -->
+  </section>
+  <!-- END: POPULAR BUSINESS-->
+</div>
+<!-- END: HOME-->
