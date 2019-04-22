@@ -3,22 +3,40 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "buybusiness": {
+    "Buybusiness": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
       "prefix": "app",
       "schematics": {
         "@schematics/angular:component": {
-          "styleext": "scss",
-          "spec": false
+          "style": "scss",
+          "skipTests": true
+        },
+        "@schematics/angular:class": {
+          "skipTests": true
+        },
+        "@schematics/angular:directive": {
+          "skipTests": true
+        },
+        "@schematics/angular:guard": {
+          "skipTests": true
+        },
+        "@schematics/angular:module": {
+          "skipTests": true
+        },
+        "@schematics/angular:pipe": {
+          "skipTests": true
+        },
+        "@schematics/angular:service": {
+          "skipTests": true
         }
       },
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/buybusiness",
+            "outputPath": "dist/Buybusiness",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -28,10 +46,11 @@
               "src/assets"
             ],
             "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.scss"
             ],
-            "scripts": [
-            ]
+            "scripts": [],
+            "es5BrowserSupport": true
           },
           "configurations": {
             "production": {
@@ -49,25 +68,32 @@
               "aot": true,
               "extractLicenses": true,
               "vendorChunk": false,
-              "buildOptimizer": true
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
             }
           }
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "buybusiness:build"
+            "browserTarget": "Buybusiness:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "buybusiness:build:production"
+              "browserTarget": "Buybusiness:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "buybusiness:build"
+            "browserTarget": "Buybusiness:build"
           }
         },
         "test": {
@@ -78,6 +104,7 @@
             "tsConfig": "src/tsconfig.spec.json",
             "karmaConfig": "src/karma.conf.js",
             "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.scss"
             ],
             "scripts": [],
@@ -101,19 +128,20 @@
         }
       }
     },
-    "buybusiness-e2e": {
+    "Buybusiness-e2e": {
       "root": "e2e/",
       "projectType": "application",
+      "prefix": "",
       "architect": {
         "e2e": {
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "buybusiness:serve"
+            "devServerTarget": "Buybusiness:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "buybusiness:serve:production"
+              "devServerTarget": "Buybusiness:serve:production"
             }
           }
         },
@@ -129,5 +157,5 @@
       }
     }
   },
-  "defaultProject": "buybusiness"
+  "defaultProject": "Buybusiness"
 }
